@@ -8,6 +8,9 @@ public class StreamsExercises {
 
         ReduceDemo reduceDemo = new ReduceDemo();
         reduceDemo.runDemo();
+
+        CollectorsDemo collectorsDemo = new CollectorsDemo();
+        collectorsDemo.runDemo();
     }
 
 }
