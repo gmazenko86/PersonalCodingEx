@@ -20,42 +20,26 @@ public class SchedulerDemo {
 //                7.,8.,9.,10.,11.,12.,13.,14.,15.,16.).publish();
 //        observable.connect();
 
+        // first process 2 Observables (streams) of 8 values in the main thread
+        // they will be processed sequentially
         Observable<Double> obsOdd = getDblObsOdds();
         Observable<Double> obsEven = getDblObsEvens();
-
         processObsMain(obsOdd);
         processObsMain(obsEven);
 
-    //TODO: add check of disposable to shutdown threads
     //TODO: add use of benchmark harness to track time?
-// ##############################################################################
 
+        // now process similar Observables (streams) of 8 values
+        // by using a multi threading scheduler. they will be processed concurrently
         obsOdd = getDblObsOdds();
         obsEven = getDblObsEvens();
-
-//        processObsThreads(obsOdd);
-//        processObsThreads(obsEven);
-
-        ExecutorService pool = Executors.newFixedThreadPool(2);
-        Disposable dispOdd = obsOdd
-            .subscribeOn(Schedulers.from(pool))
-            .doOnNext(this::printDouble)
-            .map(this::getSqrtWithDelay)
-            .observeOn(Schedulers.computation())
-            .subscribe(this::printlnWithThreadName);
-        Disposable dispEven = obsEven
-            .subscribeOn(Schedulers.from(pool))
-            .doOnNext(this::printDouble)
-            .map(this::getSqrtWithDelay)
-            .observeOn(Schedulers.computation())
-            .subscribe(this::printlnWithThreadName);
+        Disposable dispOdd = processObsThreads(obsOdd);
+        Disposable dispEven = processObsThreads(obsEven);
 
         pauseMs(1000);
-        boolean dispOddDisposed = dispOdd.isDisposed();
-        if(dispOddDisposed){
-            pool.shutdown();
-        }
-        System.out.println(pool.toString());
+        printDispStatus(dispOdd);
+        printDispStatus(dispEven);
+
     }
 
     void processObsMain(Observable<Double> observable){
@@ -65,15 +49,27 @@ public class SchedulerDemo {
             .forEach(this::printlnWithThreadName);
     }
 
-    void processObsThreads(Observable<Double> observable){
+    Disposable processObsThreads(Observable<Double> observable){
+        // create a pool for demo purposes: to show another method
+        // for creating a thread to do some of the processing
         ExecutorService pool = Executors.newFixedThreadPool(1);
-        observable
-//            .subscribeOn(Schedulers.computation())
+        // Disposable == true if the resource has been disposed (completed processing)
+        Disposable disposable = observable
+            // use the thread from the pool to emit the values
+            .subscribeOn(Schedulers.from(pool))
+            // print the value out
             .doOnNext(this::printDouble)
+            // map it to its square root and add a delay for demo purposes
             .map(this::getSqrtWithDelay)
-            .observeOn(Schedulers.from(pool))
-//            .observeOn(Schedulers.computation())
+            // use a Schedulers factory method to create a
+            // thread to observe and process the values
+            .observeOn(Schedulers.computation())
+            // from javadocs: "Subscribes to an ObservableSource and
+            // provides a callback to handle the items it emits"
+            // subscribe returns a Disposable
             .subscribe(this::printlnWithThreadName);
+        pool.shutdown();
+        return disposable;
     }
 
     Double getSqrtWithDelay(Double param){
@@ -112,5 +108,9 @@ public class SchedulerDemo {
     Observable<Double> getDblObsOddEven(){
         return Observable.fromArray(1.,2.,3.,4.,5.,6.,
                 7.,8.,9.,10.,11.,12.,13.,14.,15.,16.);
+    }
+
+    void printDispStatus(Disposable disposable){
+        System.out.println(disposable.toString() + " is disposed = " + disposable.isDisposed());
     }
 }
