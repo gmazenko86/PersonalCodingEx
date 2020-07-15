@@ -36,24 +36,26 @@ public class SchedulerDemo {
 //        processObsThreads(obsOdd);
 //        processObsThreads(obsEven);
 
-        ExecutorService pool = Executors.newFixedThreadPool(1);
-        ExecutorService pool1 = Executors.newFixedThreadPool(1);
+        ExecutorService pool = Executors.newFixedThreadPool(2);
         Disposable dispOdd = obsOdd
-            .subscribeOn(Schedulers.computation())
+            .subscribeOn(Schedulers.from(pool))
             .doOnNext(this::printDouble)
             .map(this::getSqrtWithDelay)
-            .observeOn(Schedulers.from(pool))
+            .observeOn(Schedulers.computation())
             .subscribe(this::printlnWithThreadName);
         Disposable dispEven = obsEven
-            .subscribeOn(Schedulers.computation())
+            .subscribeOn(Schedulers.from(pool))
             .doOnNext(this::printDouble)
             .map(this::getSqrtWithDelay)
-            .observeOn(Schedulers.from(pool))
+            .observeOn(Schedulers.computation())
             .subscribe(this::printlnWithThreadName);
 
         pauseMs(1000);
-        pool.shutdown();
-        pool1.shutdown();
+        boolean dispOddDisposed = dispOdd.isDisposed();
+        if(dispOddDisposed){
+            pool.shutdown();
+        }
+        System.out.println(pool.toString());
     }
 
     void processObsMain(Observable<Double> observable){
