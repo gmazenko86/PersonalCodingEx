@@ -5,12 +5,15 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import myioutils.MyIOUtils;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class SchedulerDemo {
+
+    LocalDateTime finalTimeStamp;
 
     public void runDemo(){
         MyIOUtils.printlnBlueText("Running Demo " + this.toString());
@@ -24,32 +27,40 @@ public class SchedulerDemo {
         // they will be processed sequentially
         Observable<Double> obsOdd = getDblObsOdds();
         Observable<Double> obsEven = getDblObsEvens();
+        LocalDateTime timeStamp1 = LocalDateTime.now();
         processObsMain(obsOdd);
         processObsMain(obsEven);
-
-    //TODO: add use of benchmark harness to track time?
+        LocalDateTime timeStamp2 = LocalDateTime.now();
+        double elapsed = MyIOUtils.secElapsed(timeStamp1, timeStamp2);
+        String str = String.format("%4.3f", elapsed);
+        MyIOUtils.printlnYellowText("~" + str + " seconds elapsed with sequential" +
+                " processing by the main thread");
 
         // now process similar Observables (streams) of 8 values
         // by using a multi threading scheduler. they will be processed concurrently
         obsOdd = getDblObsOdds();
         obsEven = getDblObsEvens();
+        timeStamp1 = LocalDateTime.now();
         Disposable dispOdd = processObsThreads(obsOdd);
         Disposable dispEven = processObsThreads(obsEven);
 
         pauseMs(1000);
         printDispStatus(dispOdd);
         printDispStatus(dispEven);
-
+        elapsed = MyIOUtils.secElapsed(timeStamp1, finalTimeStamp);
+        String str1 = String.format("%4.3f", elapsed);
+        MyIOUtils.printlnYellowText("~"+ str1 + " seconds elapsed with parallel" +
+                " processing by dedicated threads");
     }
 
-    void processObsMain(Observable<Double> observable){
+    protected void processObsMain(Observable<Double> observable){
         observable
             .doOnNext(this::printDouble)
             .map(this::getSqrtWithDelay)
             .forEach(this::printlnWithThreadName);
     }
 
-    Disposable processObsThreads(Observable<Double> observable){
+    protected Disposable processObsThreads(Observable<Double> observable){
         // create a pool for demo purposes: to show another method
         // for creating a thread to do some of the processing
         ExecutorService pool = Executors.newFixedThreadPool(1);
@@ -92,16 +103,18 @@ public class SchedulerDemo {
 
     void printlnWithThreadName(Double param){
         LocalTime localTime = LocalTime.now();
+        LocalDateTime timeStamp = LocalDateTime.now();
         System.out.print(Thread.currentThread().getName() + ": ");
         System.out.format("%3.3f" , param);
         System.out.println(": " + localTime);
+        finalTimeStamp = timeStamp;
     }
 
-    Observable<Double> getDblObsOdds(){
+    protected Observable<Double> getDblObsOdds(){
         return  Observable.fromArray(1.,3.,5.,7.,9.,11.,13.,15.);
     }
 
-    Observable<Double> getDblObsEvens(){
+    protected Observable<Double> getDblObsEvens(){
         return  Observable.fromArray(2.,4.,6.,8.,10.,12.,14.,16.);
     }
 
@@ -113,4 +126,6 @@ public class SchedulerDemo {
     void printDispStatus(Disposable disposable){
         System.out.println(disposable.toString() + " is disposed = " + disposable.isDisposed());
     }
+
+
 }
