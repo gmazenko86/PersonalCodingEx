@@ -53,14 +53,14 @@ public class SchedulerDemo {
                 " processing by dedicated threads");
     }
 
-    protected void processObsMain(Observable<Double> observable){
+    public void processObsMain(Observable<Double> observable){
         observable
             .doOnNext(this::printDouble)
             .map(this::getSqrtWithDelay)
             .forEach(this::printlnWithThreadName);
     }
 
-    protected Disposable processObsThreads(Observable<Double> observable){
+    public Disposable processObsThreads(Observable<Double> observable){
         // create a pool for demo purposes: to show another method
         // for creating a thread to do some of the processing
         ExecutorService pool = Executors.newFixedThreadPool(1);
@@ -110,11 +110,11 @@ public class SchedulerDemo {
         finalTimeStamp = timeStamp;
     }
 
-    protected Observable<Double> getDblObsOdds(){
+    public Observable<Double> getDblObsOdds(){
         return  Observable.fromArray(1.,3.,5.,7.,9.,11.,13.,15.);
     }
 
-    protected Observable<Double> getDblObsEvens(){
+    public Observable<Double> getDblObsEvens(){
         return  Observable.fromArray(2.,4.,6.,8.,10.,12.,14.,16.);
     }
 
