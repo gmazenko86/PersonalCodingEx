@@ -11,6 +11,9 @@ public class StreamsExercises {
 
         CollectorsDemo collectorsDemo = new CollectorsDemo();
         collectorsDemo.runDemo();
+
+        ParallelStreamsDemo parallelStreamsDemo = new ParallelStreamsDemo();
+        parallelStreamsDemo.runDemo();
     }
 
 }
