@@ -32,7 +32,7 @@ public class ParallelStreamsDemo {
         System.out.println("\nValues normally out of sequence using parallel stream\n");
     }
 
-    void timeNormalStream(){
+    public void timeNormalStream(){
         LocalDateTime time1 = LocalDateTime.now();
         DoubleStream doubleStream = getDoubleStream(1, 100_000_000);
         doubleStream
@@ -44,7 +44,7 @@ public class ParallelStreamsDemo {
         printlnYellowText("~" + str + " elapsed processing normal stream");
     }
 
-    void timeParallelStream(){
+    public void timeParallelStream(){
         LocalDateTime time1 = LocalDateTime.now();
         DoubleStream doubleStream = getDoubleStream(1, 100_000_000);
         doubleStream.parallel()
