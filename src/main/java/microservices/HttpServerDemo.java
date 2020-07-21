@@ -1,13 +1,24 @@
 package microservices;
 
+import io.vertx.rxjava.core.RxHelper;
+import io.vertx.rxjava.core.Vertx;
 import myioutils.MyIOUtils;
-
 import java.io.*;
 
 public class HttpServerDemo {
 
     public void runDemo(){
         MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+
+        // first deploy the Http server
+        Vertx vertx = Vertx.vertx();
+        RxHelper.deployVerticle(vertx, new HttpServerVerticle(8082));
+        // next deploy the EventBus message receivers
+        RxHelper.deployVerticle(vertx, new MsgRcvVerticle("Id1", "Addr1"));
+        RxHelper.deployVerticle(vertx, new MsgRcvVerticle("Id2", "Addr2"));
+
+        // give the deployments a chance to finish
+        MyIOUtils.pauseMilliSec(1000);
 
         // This class is used to create operating system processes.
         ProcessBuilder processBuilder =
@@ -27,5 +38,11 @@ public class HttpServerDemo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // delay to alloc everything to complete and then shutdown the http server
+        // and the deployed receivers
+        MyIOUtils.pauseMilliSec(1000);
+        vertx.close();
+
     }
 }
