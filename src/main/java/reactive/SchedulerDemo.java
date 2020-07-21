@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class SchedulerDemo {
 
@@ -44,7 +43,7 @@ public class SchedulerDemo {
         Disposable dispOdd = processObsThreads(obsOdd);
         Disposable dispEven = processObsThreads(obsEven);
 
-        pauseMs(1000);
+        MyIOUtils.pauseMilliSec(1000);
         printDispStatus(dispOdd);
         printDispStatus(dispEven);
         elapsed = MyIOUtils.secElapsed(timeStamp1, finalTimeStamp);
@@ -84,16 +83,8 @@ public class SchedulerDemo {
     }
 
     Double getSqrtWithDelay(Double param){
-        pauseMs(100);
+        MyIOUtils.pauseMilliSec(100);
         return Math.sqrt(param);
-    }
-
-    void pauseMs (long ms){
-        try{
-            TimeUnit.MILLISECONDS.sleep(ms);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     void printDouble(Double param){
