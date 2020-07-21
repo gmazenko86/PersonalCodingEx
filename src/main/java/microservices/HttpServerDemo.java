@@ -39,7 +39,7 @@ public class HttpServerDemo {
             e.printStackTrace();
         }
 
-        // delay to alloc everything to complete and then shutdown the http server
+        // delay to allow everything to complete and then shutdown the http server
         // and the deployed receivers
         MyIOUtils.pauseMilliSec(1000);
         vertx.close();
