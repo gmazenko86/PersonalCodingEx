@@ -2,10 +2,6 @@ package online.cod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class L2Arrays {
 
@@ -14,7 +10,7 @@ public class L2Arrays {
     // of the array is moved to the first place.
     // The goal is to rotate array A K times; ach element of A will be shifted to the right K times.
 
-    public int[] solution(int[] A, int K) {
+    public int[] rotateSolution(int[] A, int K) {
 
         int[] swapArray = Arrays.copyOf(A, A.length);
 
@@ -36,7 +32,7 @@ public class L2Arrays {
 
     // below solution received a score of 55/100 due to performance test issues
     // all functional tests passed
-    public int solution2(int[] A) {
+    public int oddOccurSolution1(int[] A) {
         ArrayList<Integer> arrayList = new ArrayList<>();
         for(int arrayEntry : A){
             arrayList.add(arrayEntry);
@@ -67,7 +63,7 @@ public class L2Arrays {
         return -1;
     }
 
-    public int solution3(int[] A) {
+    public int oddOccurSolution2(int[] A) {
 
         // this only works if the unpaired value appears only
         // once in the array. It breaks if it appears an odd number
@@ -83,7 +79,7 @@ public class L2Arrays {
         return A[A.length - 1];
     }
 
-    public int solution4(int[] A) {
+    public int oddOccurSolution3(int[] A) {
         // this got a score of 100/100
         // I still like solution 2 the best. More robust
         // and performance degradation would not likely
@@ -101,5 +97,25 @@ public class L2Arrays {
             } else { count += 1; }
         }
         return A[A.length - 1];
+    }
+
+    // this solution got 55/100 same as solution 2
+    // but my own benchmarks show that it has twice
+    // the throughput as solution 2, but about 25%
+    // of the throughput of solution 4
+    public int oddOccurSolution4(int[] A) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for(int arrayEntry : A){
+            arrayList.add(arrayEntry);
+        }
+
+        ArrayList<Integer> temp = new ArrayList<>();
+
+        while(arrayList.size() % 2 == 1){
+            temp.clear();
+            temp.add(arrayList.get(0));
+            arrayList.removeAll(temp);
+        }
+        return temp.get(0);
     }
 }
