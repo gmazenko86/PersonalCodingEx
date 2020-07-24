@@ -4,6 +4,7 @@ import myioutils.MyIOUtils;
 import online.cod.L1Iterations;
 import online.cod.L2Arrays;
 import online.cod.L3TimeComplexity;
+import online.cod.L4CountingElements;
 
 import java.util.Random;
 
@@ -65,6 +66,21 @@ public class OnlineMaster {
 
         int[] L3_7 = {3, 1, 2, 4, 3};
         l3.printTapeEquilibrium(L3_7);
+
+        L4CountingElements l4 = new L4CountingElements();
+        int jumps = 5; int[] leaves = {1,3,1,4,2,3,5,4};
+        l4.printFrogRiverSolution1(jumps, leaves);
+        l4.printFrogRiverSolution2(jumps, leaves);
+
+        int numCounters = 5; int[] L4_1 = {3,4,4,6,1,4,4};
+//        int numCounters = 5; int[] L4_1 = {3,4,4,6,1,4,4,6,1,2,6,1,2,3,6,2,2,2,2,2,6};
+        l4.printMaxCountersSolution1(numCounters, L4_1);
+        int numCounters2 = 5; int[] L4_2 = {3,4,4,6,1,4,4};
+        l4.printMaxCountersSolution2(numCounters2, L4_2);
+        int numCounters3 = 5; int[] L4_3 = {3,4,4,6,1,4,4};
+        l4.printMaxCountersSolution3(numCounters2, L4_3);
+        int numCounters4 = 5; int[] L4_4 = {3,4,4,6,1,4,4};
+        l4.printMaxCountersSolution4(numCounters2, L4_4);
     }
 
 }
