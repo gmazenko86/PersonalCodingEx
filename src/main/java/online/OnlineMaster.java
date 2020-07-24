@@ -67,22 +67,27 @@ public class OnlineMaster {
         int[] L3_7 = {3, 1, 2, 4, 3};
         l3.printTapeEquilibrium(L3_7);
 
+        // Lesson 4-1 : FrogRiverOne
         L4CountingElements l4 = new L4CountingElements();
         int jumps = 5; int[] leaves = {1,3,1,4,2,3,5,4};
         l4.printFrogRiverSolution1(jumps, leaves);
         l4.printFrogRiverSolution2(jumps, leaves);
 
+        // Lesson 4-2 : MaxCounters
         int numCounters = 5; int[] L4_1 = {3,4,4,6,1,4,4};
 //        int numCounters = 5; int[] L4_1 = {3,4,4,6,1,4,4,6,1,2,6,1,2,3,6,2,2,2,2,2,6};
-        l4.printMaxCountersSolution1(numCounters, L4_1);
-        int numCounters2 = 5; int[] L4_2 = {3,4,4,6,1,4,4};
-        l4.printMaxCountersSolution2(numCounters2, L4_2);
-        int numCounters3 = 5; int[] L4_3 = {3,4,4,6,1,4,4};
-        l4.printMaxCountersSolution3(numCounters2, L4_3);
-        int numCounters4 = 5; int[] L4_4 = {3,4,4,6,1,4,4};
-        l4.printMaxCountersSolution4(numCounters2, L4_4);
-        int numCounters5 = 5; int[] L4_5 = {3,4,4,6,1,4,4};
-        l4.printMaxCountersSolution5(numCounters2, L4_5);
+        l4.printMaxCountersSolution(1, numCounters, L4_1, l4::maxCountersSolution1);
+        l4.printMaxCountersSolution(2, numCounters, L4_1, l4::maxCountersSolution2);
+        l4.printMaxCountersSolution(3, numCounters, L4_1, l4::maxCountersSolution3);
+        l4.printMaxCountersSolution(4, numCounters, L4_1, l4::maxCountersSolution4);
+        l4.printMaxCountersSolution(5, numCounters, L4_1, l4::maxCountersSolution5);
+
+        // Lesson 4-3 : MissingInteger
+        int[] L4_3 = {1,3,6,4,1,2};
+        System.out.println();
+        l4.printMissingIntegerSolution(1, L4_3, l4::missingIntegerSolution1);
+        l4.printMissingIntegerSolution(1, L4_3, l4::missingIntegerSolution2);
+
     }
 
 }

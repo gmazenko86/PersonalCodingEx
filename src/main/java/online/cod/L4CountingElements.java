@@ -3,34 +3,34 @@ package online.cod;
 import java.util.Arrays;
 
 public class L4CountingElements {
-/*
-A small frog wants to get to the other side of a river. The frog is initially located on
- one bank of the river (position 0) and wants to get to the opposite bank (position X+1).
- Leaves fall from a tree onto the surface of the river. You are given an array A consisting
- of N integers representing the falling leaves. A[K] represents the position where one leaf
- falls at time K, measured in seconds.
+    /*
+    A small frog wants to get to the other side of a river. The frog is initially located on
+     one bank of the river (position 0) and wants to get to the opposite bank (position X+1).
+     Leaves fall from a tree onto the surface of the river. You are given an array A consisting
+     of N integers representing the falling leaves. A[K] represents the position where one leaf
+     falls at time K, measured in seconds.
 
- The goal is to find the earliest time when the frog can jump to the other side of the river.
- The frog can cross only when leaves appear at every position across the river from 1 to X
- (that is, we want to find the earliest moment when all the positions from 1 to X are covered by leaves).
- You may assume that the speed of the current in the river is negligibly small, i.e. the
- leaves do not change their positions once they fall in the river.
+     The goal is to find the earliest time when the frog can jump to the other side of the river.
+     The frog can cross only when leaves appear at every position across the river from 1 to X
+     (that is, we want to find the earliest moment when all the positions from 1 to X are covered by leaves).
+     You may assume that the speed of the current in the river is negligibly small, i.e. the
+     leaves do not change their positions once they fall in the river.
 
-For example, you are given integer X = 5 and array A such that:
-  A[0] = 1
-  A[1] = 3
-  A[2] = 1
-  A[3] = 4
-  A[4] = 2
-  A[5] = 3
-  A[6] = 5
-  A[7] = 4
+    For example, you are given integer X = 5 and array A such that:
+      A[0] = 1
+      A[1] = 3
+      A[2] = 1
+      A[3] = 4
+      A[4] = 2
+      A[5] = 3
+      A[6] = 5
+      A[7] = 4
 
-In second 6, a leaf falls into position 5. This is the earliest time when leaves appear in every position across the river.
+    In second 6, a leaf falls into position 5. This is the earliest time when leaves appear in every position across the river.
 
-Write a function:
-    class Solution { public int solution(int X, int[] A); }
- */
+    Write a function:
+        class Solution { public int solution(int X, int[] A); }
+     */
     // the following 2 function solution got a 54/100
     // all functional tests passed. All performance tests failed
     public int frogRiverSolution1(int X, int[] A){
@@ -73,23 +73,42 @@ Write a function:
     }
 
     // see lengthy problem statement lower in the page
-    // the 2 function solution below received 66/100
-    // functional tests passed. 3 of 5 performance tests failed.
+    // the 2 function solution below received 66/100.
+    // All functional tests passed. 3 of 5 performance tests failed.
     public int[] maxCountersSolution1(int numCnt, int[] A){
 
-            int[] dummy = {0};
-            int[] counters = Arrays.copyOf(dummy, numCnt);
+        int[] dummy = {0};
+        int[] counters = Arrays.copyOf(dummy, numCnt);
 
-            for(int i = 0; i < A.length; i++){
-                if(A[i] == numCnt + 1){
-                    setAllMax(counters);
-                } else {
-                    counters[A[i]-1] += 1;
-                }
+        for(int i = 0; i < A.length; i++){
+            if(A[i] == numCnt + 1){
+                setAllMax(counters);
+            } else {
+                counters[A[i]-1] += 1;
             }
-            return counters;
         }
+        return counters;
+    }
 
+    public void setAllMax(int[] counters){
+        int max = counters[0];
+        for(int i = 1; i < counters.length; i++){
+            if(counters[i] > max){
+                max = counters[i];
+            }
+        }
+        for(int i = 0; i < counters.length; i++){
+            counters[i] = max;
+        }
+        // note that the below code did not work. had to replace it
+        // with the above for loop
+        // figure out why. Perhaps elements cannot be changed inside
+        // an enhanced for loop
+//        for(int entry : counters){
+//            entry = max;
+//            System.out.println("Setting entry to max. Entry now = " + entry);
+//        }
+    }
     // the 1 function solution below received 77/100
     // functional tests passed. 2 of 5 performance tests failed.
     // my own benchmark is not better than solution 1 for a very small data set
@@ -169,7 +188,7 @@ Write a function:
     // my own benchmarks show that it performs slightly worse
     // for a very small input array. It apparently performs
     // much better for "10000 max_counter operations"
-    public int[] maxCountersSolution5(int numCnt, int[] A){
+    public int[] maxCountersSolution5(int numCnt, int[] A) {
         int[] dummy = {0};
         int[] counters = Arrays.copyOf(dummy, numCnt);
         int max = 0;
@@ -191,26 +210,50 @@ Write a function:
         return counters;
     }
 
-        public void setAllMax(int[] counters){
-            int max = counters[0];
-            for(int i = 1; i < counters.length; i++){
-                if(counters[i] > max){
-                    max = counters[i];
-                }
-            }
-            for(int i = 0; i < counters.length; i++){
-                counters[i] = max;
-            }
-            // note that the below code did not work. had to replace it
-            // with the above for loop
-            // figure out why. Perhaps elements cannot be changed inside
-            // an enhanced for loop
-//        for(int entry : counters){
-//            entry = max;
-//            System.out.println("Setting entry to max. Entry now = " + entry);
-//        }
-        }
+//    Write a function: class Solution { public int solution(int[] A); }
+//    that, given an array A of N integers, returns the smallest positive integer
+//    (greater than 0) that does not occur in A.
+//    For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.
+//    Given A = [1, 2, 3], the function should return 4.
+//    Given A = [−1, −3], the function should return 1.
 
+    // this solution received 77/100. 5/5 passed for correctness
+    // 2/4 failed for performance
+    // failed case 1: chaotic + sequence 1, 2, ..., 40000 (without minus):
+    // TIMEOUT ERROR, running time: 2.888 sec., time limit: 0.912 sec.
+    // failed case 2: shuffled sequence 1, 2, ..., 100000 (without minus)
+    //  TIMEOUT ERROR, running time: 5.008 sec., time limit: 1.008 sec.
+    public int missingIntegerSolution1(int[] A){
+        Arrays.sort(A);
+        int baseIndex = 0;
+        int searchInt = 1;
+        int upperBound = A.length;
+        do{
+            baseIndex = Arrays.binarySearch(A,searchInt);
+            if(baseIndex < 0){ return searchInt; }
+            searchInt += 1;
+            A = Arrays.copyOfRange(A, baseIndex, upperBound);
+            upperBound = A.length;
+        } while(baseIndex >= 0);
+
+        return -1;
+    }
+
+    // the solution below scored 100/100. Reducing the
+    // array size in solution 1 was actually a detriment
+    // and caused 2 performance tests to fail. Avoid mem copies
+    public int missingIntegerSolution2(int[] A){
+        Arrays.sort(A);
+        int baseIndex;
+        int searchInt = 1;
+        do{
+            baseIndex = Arrays.binarySearch(A,searchInt);
+            if(baseIndex < 0){ return searchInt; }
+            searchInt += 1;
+        } while(baseIndex >= 0);
+
+        return -1;
+    }
 // **********************************************************************
 
     public void printFrogRiverSolution1(int X, int[] A){
@@ -226,42 +269,39 @@ Write a function:
         System.out.println("\nSolution 2: Can cross at time = " + jumpTime);
     }
 
-    public void printMaxCountersSolution1(int numCnt, int[] A){
-        for(int entry : A){System.out.print(entry + ", ");}
-        int[] counters = maxCountersSolution1(numCnt, A);
-        System.out.print("\nprintMaxCountersSolution1 returns ");
+    // Don't want 5 different print functions for 5 solutions
+    // Define a custom functional interface since none of the standard
+    // ones have the desired method signature
+    // A functional Interface is just a regular Interface but with one rule
+    // – it must have exactly one abstract method. They
+    // are assignment targets for Lambda Expressions and Method references.
+    @FunctionalInterface
+    public interface MaxCountSolution{
+        int[] accept(int N, int[]A);
+    }
+
+    // now the below function can take a solution function as a parameter
+    public void printMaxCountersSolution(int id, int numCnt, int[] A,
+                                         MaxCountSolution function){
+        System.out.print("Input array = ");
+        for(int entry : A){ System.out.print(entry + ", "); }
+        int[] counters = function.accept(numCnt, A);
+        System.out.print("\nmaxCountersSolution" + id + " returns ");
         for(int entry : counters){System.out.print(entry + ", ");}
         System.out.println();
     }
 
-    public void printMaxCountersSolution2(int numCnt, int[] A){
-        for(int entry : A){System.out.print(entry + ", ");}
-        int[] counters = maxCountersSolution2(numCnt, A);
-        System.out.print("\nprintMaxCountersSolution2 returns ");
-        for(int entry : counters){System.out.print(entry + ", ");}
-        System.out.println();
+    @FunctionalInterface
+    public interface MissingIntegerSolution{
+        int accept(int[]A);
     }
 
-    public void printMaxCountersSolution3(int numCnt, int[] A){
-        for(int entry : A){System.out.print(entry + ", ");}
-        int[] counters = maxCountersSolution3(numCnt, A);
-        System.out.print("\nprintMaxCountersSolution3 returns ");
-        for(int entry : counters){System.out.print(entry + ", ");}
-        System.out.println();
-    }
-    public void printMaxCountersSolution4(int numCnt, int[] A){
-        for(int entry : A){System.out.print(entry + ", ");}
-        int[] counters = maxCountersSolution4(numCnt, A);
-        System.out.print("\nprintMaxCountersSolution4 returns ");
-        for(int entry : counters){System.out.print(entry + ", ");}
-        System.out.println();
-    }
-
-    public void printMaxCountersSolution5(int numCnt, int[] A){
-        for(int entry : A){System.out.print(entry + ", ");}
-        int[] counters = maxCountersSolution5(numCnt, A);
-        System.out.print("\nprintMaxCountersSolution5 returns ");
-        for(int entry : counters){System.out.print(entry + ", ");}
+    public void printMissingIntegerSolution(int id, int[] A,
+                                         MissingIntegerSolution function){
+        System.out.print("Input array = ");
+        for(int entry : A){ System.out.print(entry + ", "); }
+        int retVal = function.accept(A);
+        System.out.print("\nmissingIntegerSolution" + id + " returns " + retVal);
         System.out.println();
     }
 }
