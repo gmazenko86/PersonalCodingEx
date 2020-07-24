@@ -165,17 +165,31 @@ Write a function:
         return counters;
     }
 
-/*
-       public void setAllMax(int[] counters){
-            Arrays.sort(counters);
-            for(int i = 0; i < counters.length; i++){
-                counters[i] = counters[counters.length - 1];
+    // this solution receives 100/100
+    // my own benchmarks show that it performs slightly worse
+    // for a very small input array. It apparently performs
+    // much better for "10000 max_counter operations"
+    public int[] maxCountersSolution5(int numCnt, int[] A){
+        int[] dummy = {0};
+        int[] counters = Arrays.copyOf(dummy, numCnt);
+        int max = 0;
+        int maxBase = 0;
+        int base = 0;
+
+        for(int i = 0; i < A.length; i++){
+            if(A[i] == numCnt + 1){
+                maxBase = max;
+            } else {
+                base = Math.max(maxBase, counters[A[i]-1]);
+                counters[A[i]-1] = base + 1;
+                if(counters[A[i]-1] > max){ max = counters[A[i]-1]; }
             }
         }
-*/
-
-
-
+        for(int i = 0; i < counters.length; i++){
+            counters[i] = Math.max(counters[i], maxBase);
+        }
+        return counters;
+    }
 
         public void setAllMax(int[] counters){
             int max = counters[0];
@@ -196,9 +210,6 @@ Write a function:
 //            System.out.println("Setting entry to max. Entry now = " + entry);
 //        }
         }
-
-
-
 
 // **********************************************************************
 
@@ -242,6 +253,14 @@ Write a function:
         for(int entry : A){System.out.print(entry + ", ");}
         int[] counters = maxCountersSolution4(numCnt, A);
         System.out.print("\nprintMaxCountersSolution4 returns ");
+        for(int entry : counters){System.out.print(entry + ", ");}
+        System.out.println();
+    }
+
+    public void printMaxCountersSolution5(int numCnt, int[] A){
+        for(int entry : A){System.out.print(entry + ", ");}
+        int[] counters = maxCountersSolution5(numCnt, A);
+        System.out.print("\nprintMaxCountersSolution5 returns ");
         for(int entry : counters){System.out.print(entry + ", ");}
         System.out.println();
     }

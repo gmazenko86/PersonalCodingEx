@@ -81,6 +81,8 @@ public class OnlineMaster {
         l4.printMaxCountersSolution3(numCounters2, L4_3);
         int numCounters4 = 5; int[] L4_4 = {3,4,4,6,1,4,4};
         l4.printMaxCountersSolution4(numCounters2, L4_4);
+        int numCounters5 = 5; int[] L4_5 = {3,4,4,6,1,4,4};
+        l4.printMaxCountersSolution5(numCounters2, L4_5);
     }
 
 }
