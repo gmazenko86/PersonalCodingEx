@@ -1,12 +1,10 @@
 package online;
 
 import myioutils.MyIOUtils;
-import online.cod.L1Iterations;
-import online.cod.L2Arrays;
-import online.cod.L3TimeComplexity;
-import online.cod.L4CountingElements;
+import online.cod.*;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 import static java.lang.Integer.toBinaryString;
 
@@ -87,6 +85,58 @@ public class OnlineMaster {
         System.out.println();
         l4.printMissingIntegerSolution(1, L4_3, l4::missingIntegerSolution1);
         l4.printMissingIntegerSolution(1, L4_3, l4::missingIntegerSolution2);
+
+        // Lesson 4-4 : CheckPermutation
+        int[] L4_4 = {4,1,3,2};
+        System.out.println();
+        l4.printCheckPermSolution(1, L4_4, l4::checkPermSolution1);
+        int[] L4_4b = {4,1,3};
+        l4.printCheckPermSolution(1, L4_4b, l4::checkPermSolution1);
+
+        // Lesson 5-1 : CountDiv
+        int A5 = 6; int B5 = 11; int K5 = 2;
+        System.out.println();
+        L5PrefixSums l5 = new L5PrefixSums();
+        l5.printCountDivSolution(1, A5, B5, K5, l5::countDivSolution1);
+        l5.printCountDivSolution(2, A5, B5, K5, l5::countDivSolution2);
+        l5.printCountDivSolution(3, A5, B5, K5, l5::countDivSolution3);
+
+        String str1 = "ACGTACGTACGTACGTACGTACGT";
+        int[] P1 = {5,10,15}; int[] Q1 = {23,18,15};
+        System.out.println();
+        l5.printGenomicRangeSolution(1, str1, P1, Q1, l5::genomicRangeSolution1);
+        String str2 = "CAGCCTA";
+        int[] P2 = {2,5,0}; int[] Q2 = {4,5,6};
+        l5.printGenomicRangeSolution(1, str2, P2, Q2, l5::genomicRangeSolution1);
+
+        l5.printGenomicRangeSolution(2, str1, P1, Q1, l5::genomicRangeSolution2);
+        l5.printGenomicRangeSolution(2, str2, P2, Q2, l5::genomicRangeSolution2);
+        l5.printGenomicRangeSolution(3, str2, P2, Q2, l5::genomicRangeSolution3);
+        l5.printGenomicRangeSolution(4, str2, P2, Q2, l5::genomicRangeSolution4);
+        l5.printGenomicRangeSolution(5, str2, P2, Q2, l5::genomicRangeSolution5);
+        l5.printGenomicRangeSolution(6, str2, P2, Q2, l5::genomicRangeSolution6);
+
+        // Lesson 5-3 : MinAvgTwoSlice
+        System.out.println();
+        int[] L5_3 = {4,2,2,5,1,5,8};
+        l5.printMinAvgTwoSliceSolution(1, L5_3, l5::minAvgTwoSliceSolution1);
+        l5.printMinAvgTwoSliceSolution(2, L5_3, l5::minAvgTwoSliceSolution2);
+        l5.printMinAvgTwoSliceSolution(3, L5_3, l5::minAvgTwoSliceSolution3);
+        l5.printMinAvgTwoSliceSolution(4, L5_3, l5::minAvgTwoSliceSolution4);
+
+        int[] L5_3b = {-3,-5,-8,-4,-10};
+        l5.printMinAvgTwoSliceSolution(1, L5_3b, l5::minAvgTwoSliceSolution1);
+        l5.printMinAvgTwoSliceSolution(2, L5_3b, l5::minAvgTwoSliceSolution2);
+        l5.printMinAvgTwoSliceSolution(3, L5_3b, l5::minAvgTwoSliceSolution3);
+        l5.printMinAvgTwoSliceSolution(4, L5_3b, l5::minAvgTwoSliceSolution4);
+
+        IntStream intStream2 = new Random().ints(100000, -10000, 10001);
+        int[] bigArray2 = intStream2.toArray();
+        l5.printMinAvgTwoSliceSolution(4, bigArray2, l5::minAvgTwoSliceSolution4);
+
+        IntStream intStream = new Random().ints(100000, -1, 2);
+        int[] bigArray = intStream.toArray();
+        l5.printMinAvgTwoSliceSolution(4, bigArray, l5::minAvgTwoSliceSolution4);
 
     }
 

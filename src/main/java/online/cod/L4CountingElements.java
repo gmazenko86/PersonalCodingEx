@@ -254,6 +254,32 @@ public class L4CountingElements {
 
         return -1;
     }
+
+    // A non-empty array A consisting of N integers is given.
+    // A permutation is a sequence containing each element from 1 to N once, and only once.
+    // For example, array A such that:
+    //    A[0] = 4
+    //    A[1] = 1
+    //    A[2] = 3
+    //    A[3] = 2
+    // is a permutation, but array A such that:
+    //    A[0] = 4
+    //    A[1] = 1
+    //    A[2] = 3
+    // is not a permutation, because value 2 is missing.
+    // Write a function: class Solution { public int solution(int[] A); }
+    // that, given an array A, returns 1 if array A is a permutation and 0 if it is not.
+
+    // the solution below received 100/100
+    public int checkPermSolution1(int[] A){
+        Arrays.sort(A);
+        if(A[A.length -1] != A.length){ return 0; }
+        for(int i = 0; i < A.length - 1; i++){
+            if(A[i] != i + 1){ return 0; }
+        }
+        return 1;
+    }
+
 // **********************************************************************
 
     public void printFrogRiverSolution1(int X, int[] A){
@@ -292,16 +318,25 @@ public class L4CountingElements {
     }
 
     @FunctionalInterface
-    public interface MissingIntegerSolution{
+    public interface IntArrayRetInt {
         int accept(int[]A);
     }
 
     public void printMissingIntegerSolution(int id, int[] A,
-                                         MissingIntegerSolution function){
+                                         IntArrayRetInt function){
         System.out.print("Input array = ");
         for(int entry : A){ System.out.print(entry + ", "); }
         int retVal = function.accept(A);
         System.out.print("\nmissingIntegerSolution" + id + " returns " + retVal);
+        System.out.println();
+    }
+
+    public void printCheckPermSolution(int id, int[] A,
+                                            IntArrayRetInt function){
+        System.out.print("Input array = ");
+        for(int entry : A){ System.out.print(entry + ", "); }
+        int retVal = function.accept(A);
+        System.out.print("\ncheckPermSolution" + id + " returns " + retVal);
         System.out.println();
     }
 }
