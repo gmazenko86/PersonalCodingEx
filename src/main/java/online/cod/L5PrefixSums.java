@@ -68,6 +68,7 @@ public class L5PrefixSums {
     }
 
     // ********** L5-2: GenomicRangeQuery
+
     // this 2 function solution received 50/100. 1/5 functional tests failed
     // 3/3 performance tests failed
     public int[] genomicRangeSolution1(String S, int[] P, int[] Q) {
@@ -111,6 +112,7 @@ public class L5PrefixSums {
         }
         return impFactor;
     }
+
     // this 1 function solution received 75/100. 5/5 functional tests passed
     // 1/3 performance tests passed
     // my own benchmarking indicates it has 3x throughput of solution 1

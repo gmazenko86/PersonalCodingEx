@@ -5,11 +5,6 @@ import java.util.Arrays;
 
 public class L2Arrays {
 
-    //An array A consisting of N integers is given. Rotation of the array means
-    // that each element is shifted right by one index, and the last element
-    // of the array is moved to the first place.
-    // The goal is to rotate array A K times; ach element of A will be shifted to the right K times.
-
     public int[] rotateSolution(int[] A, int K) {
 
         int[] swapArray = Arrays.copyOf(A, A.length);
@@ -24,11 +19,6 @@ public class L2Arrays {
         }
         return A;
     }
-
-    // A non-empty array A consisting of N integers is given. The array contains
-    // an odd number of elements, and each element of the array can be paired
-    // with another element that has the same value, except for one element
-    // that is left unpaired.
 
     // below solution received a score of 55/100 due to performance test issues
     // all functional tests passed
