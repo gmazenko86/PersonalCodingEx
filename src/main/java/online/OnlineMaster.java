@@ -294,7 +294,7 @@ public class OnlineMaster {
         l7.printStringRetInt("nest1", L7_3b, l7::nest1);
 
         // Lesson 7-4 : Nesting
-/*
+
         int[] L7_4 = {8,8,5,7,9,8,7,4,8};
         l6.printIntArrayRetInt("stonewall1", L7_4, l7::stonewall1);
         l6.printIntArrayRetInt("stonewall2", L7_4, l7::stonewall2);
@@ -306,18 +306,14 @@ public class OnlineMaster {
         int[] L7_4c = {1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,4,3,2,1};
         l6.printIntArrayRetInt("stonewall2", L7_4c, l7::stonewall2);
 
- */
-
+        // test and fix the known failure
         IntStream stream = IntStream.range(1,50_001);
         int[] tempArray = stream.toArray();
         int[] L7_4d = new int[100_000];
         for(int i = 0; i < tempArray.length; i++){ L7_4d[i] = tempArray[i];}
         for(int i = 0; i < tempArray.length; i++){ L7_4d[2 * tempArray.length - 1 - i] = tempArray[i];}
-//        for(int entry : L7_4d){System.out.println(entry);}
 
         l6.printIntArrayRetInt("stonewall2", L7_4d, l7::stonewall2);
 
-//        int[] L7_4e = {1,2,3,4,5,6,7,8,9,10,10,9,8,7,6,5,4,3,2,1};
-//        l6.printIntArrayRetInt("stonewall2", L7_4e, l7::stonewall2);
     }
 }
