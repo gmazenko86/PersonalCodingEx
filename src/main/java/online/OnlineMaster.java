@@ -3,6 +3,7 @@ package online;
 import myioutils.MyIOUtils;
 import online.cod.*;
 
+import java.io.InputStream;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -118,8 +119,6 @@ public class OnlineMaster {
         String str2 = "CAGCCTA";
         int[] P2 = {2,5,0}; int[] Q2 = {4,5,6};
         l5.printGenomicRangeSolution(1, str2, P2, Q2, l5::genomicRangeSolution1);
-
-        l5.printGenomicRangeSolution(2, str1, P1, Q1, l5::genomicRangeSolution2);
         l5.printGenomicRangeSolution(2, str2, P2, Q2, l5::genomicRangeSolution2);
         l5.printGenomicRangeSolution(3, str2, P2, Q2, l5::genomicRangeSolution3);
         l5.printGenomicRangeSolution(4, str2, P2, Q2, l5::genomicRangeSolution4);
@@ -172,12 +171,14 @@ public class OnlineMaster {
         l6.printIntArrayRetInt("numberOfDiscIntersections3", L6_2c, l6::numberOfDiscIntersections3);
         l6.printIntArrayRetInt("numberOfDiscIntersections4", L6_2c, l6::numberOfDiscIntersections4);
         l6.printIntArrayRetInt("numberOfDiscIntersections5", L6_2c, l6::numberOfDiscIntersections5);
+        l6.printIntArrayRetInt("numberOfDiscIntersections6", L6_2c, l6::numberOfDiscIntersections6);
         int[] L6_2d = {0,0,0,0,0,0,0,0,0,2147483647};
         l6.printIntArrayRetInt("numberOfDiscIntersections1", L6_2d, l6::numberOfDiscIntersections1);
         l6.printIntArrayRetInt("numberOfDiscIntersections2", L6_2d, l6::numberOfDiscIntersections2);
         l6.printIntArrayRetInt("numberOfDiscIntersections3", L6_2d, l6::numberOfDiscIntersections3);
         l6.printIntArrayRetInt("numberOfDiscIntersections4", L6_2d, l6::numberOfDiscIntersections4);
         l6.printIntArrayRetInt("numberOfDiscIntersections5", L6_2d, l6::numberOfDiscIntersections5);
+        l6.printIntArrayRetInt("numberOfDiscIntersections6", L6_2d, l6::numberOfDiscIntersections6);
 
         IntStream intStream1 = new Random().ints(10000, 0, 1000);
 //        IntStream intStream1 = IntStream.rangeClosed(0, 1_000);
@@ -186,6 +187,7 @@ public class OnlineMaster {
         l6.printIntArrayRetInt("numberOfDiscIntersections3", L6_3huge, l6::numberOfDiscIntersections3);
         l6.printIntArrayRetInt("numberOfDiscIntersections4", L6_3huge, l6::numberOfDiscIntersections4);
         l6.printIntArrayRetInt("numberOfDiscIntersections5", L6_3huge, l6::numberOfDiscIntersections5);
+        l6.printIntArrayRetInt("numberOfDiscIntersections6", L6_3huge, l6::numberOfDiscIntersections6);
 
         // Lesson 6-4 : Triangles
         int[] L6_4 = {10,2,5,1,8,20};
@@ -205,7 +207,117 @@ public class OnlineMaster {
         l6.printIntArrayRetInt("triangle1", L6_4huge, l6::triangle1);
         l6.printIntArrayRetInt("triangle2", L6_4huge, l6::triangle2);
 
+        // Lesson 7-1 : Brackets
+        L7StacksQueues l7 = new L7StacksQueues();
+        MyIOUtils.printlnBlueText("Running Demo " + l7.toString());
 
+        String s7_1 = "{[()()]}";
+        l7.printStringRetInt("bracket1", s7_1, l7::brackets1);
+        l7.printStringRetInt("bracket2", s7_1, l7::brackets2);
+
+        String s7_2 = "({{({}[]{})}}[]{})";
+        System.out.println("The next one should return 1");
+        l7.printStringRetInt("bracket1", s7_2, l7::brackets1);
+        l7.printStringRetInt("bracket2", s7_2, l7::brackets2);
+
+
+        String s7_3 = "{}[]()";
+        System.out.println("Next should return 1");
+        l7.printStringRetInt("bracket1", s7_3, l7::brackets1);
+        l7.printStringRetInt("bracket2", s7_3, l7::brackets2);
+
+        String s7_4 = "([)()]";
+        System.out.println("Next should return 0");
+        l7.printStringRetInt("bracket1", s7_4, l7::brackets1);
+        l7.printStringRetInt("bracket2", s7_4, l7::brackets2);
+
+        String s7_5 = "({[)}]";
+        System.out.println("Next should return 0");
+        l7.printStringRetInt("bracket1", s7_5, l7::brackets1);
+        l7.printStringRetInt("bracket2", s7_5, l7::brackets2);
+
+        // Lesson 7-2 : Fish
+
+        int[] L7_2A = {4,3,2,1,5};
+        int[] L7_2B = {0,1,0,0,0};
+        l7.printIntArr2RetInt("fish1", L7_2A, L7_2B, l7::fish1);
+        l7.printIntArr2RetInt("fish2", L7_2A, L7_2B, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2A, L7_2B, l7::fish3);
+
+        int[] L7_2Ab = {1};
+        int[] L7_2Bb = {1};
+        l7.printIntArr2RetInt("fish1", L7_2Ab, L7_2Bb, l7::fish1);
+        l7.printIntArr2RetInt("fish2", L7_2Ab, L7_2Bb, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2Ab, L7_2Bb, l7::fish3);
+
+        int[] L7_2Ac = {5,4,3,2,1};
+        int[] L7_2Bc = {1,0,0,0,0};
+        l7.printIntArr2RetInt("fish1", L7_2Ac, L7_2Bc, l7::fish1);
+        l7.printIntArr2RetInt("fish2", L7_2Ac, L7_2Bc, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2Ac, L7_2Bc, l7::fish3);
+
+        int[] L7_2Ad = {5,4,3,2,1};
+        int[] L7_2Bd = {0,0,0,0,1};
+        l7.printIntArr2RetInt("fish1", L7_2Ad, L7_2Bd, l7::fish1);
+        l7.printIntArr2RetInt("fish2", L7_2Ad, L7_2Bd, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2Ad, L7_2Bd, l7::fish3);
+
+        int[] L7_2Ae = {4,9,2,6,5,7,3,8,1};
+        int[] L7_2Be = {0,1,0,1,1,1,0,1,0};
+        l7.printIntArr2RetInt("fish2", L7_2Ae, L7_2Be, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2Ae, L7_2Be, l7::fish3);
+
+        int[] L7_2Af = {4,9,2,6,5,7,3,8,1};
+        int[] L7_2Bf = {0,1,0,1,0,0,0,1,0};
+        l7.printIntArr2RetInt("fish2", L7_2Af, L7_2Bf, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2Af, L7_2Bf, l7::fish3);
+
+        int[] L7_2Ag = {13,30,9,29,8,7,12,28,6,26,14,15,2,1,24,19,11,20,23,16,3,5,18,17,10,25,27,4,22,21};
+        int[] L7_2Bg = {1,0,1,1,1,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0};
+        l7.printIntArr2RetInt("fish2", L7_2Ag, L7_2Bg, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2Ag, L7_2Bg, l7::fish3);
+
+        int[] L7_2Ah = {10,4,9,2,6,5,7,3,8,1};
+        int[] L7_2Bh = {1,0,0,0,1,0,0,0,0,0};
+        l7.printIntArr2RetInt("fish2", L7_2Ah, L7_2Bh, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2Ah, L7_2Bh, l7::fish3);
+
+        int[] L7_2Ai = {1,2,3};
+        int[] L7_2Bi = {1,1,0};
+        l7.printIntArr2RetInt("fish2", L7_2Ai, L7_2Bi, l7::fish2);
+        l7.printIntArr2RetInt("fish3", L7_2Ai, L7_2Bi, l7::fish3);
+
+        // Lesson 7-3 : Nesting
+        String L7_3 = "(()(())())";
+        l7.printStringRetInt("nest1", L7_3, l7::nest1);
+        String L7_3b =  "())";
+        l7.printStringRetInt("nest1", L7_3b, l7::nest1);
+
+        // Lesson 7-4 : Nesting
+/*
+        int[] L7_4 = {8,8,5,7,9,8,7,4,8};
+        l6.printIntArrayRetInt("stonewall1", L7_4, l7::stonewall1);
+        l6.printIntArrayRetInt("stonewall2", L7_4, l7::stonewall2);
+
+        int[] L7_4b = {2, 5, 1, 4, 6, 7, 9, 10, 1};
+        l6.printIntArrayRetInt("stonewall1", L7_4b, l7::stonewall1);
+        l6.printIntArrayRetInt("stonewall2", L7_4b, l7::stonewall2);
+
+        int[] L7_4c = {1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,4,3,2,1};
+        l6.printIntArrayRetInt("stonewall2", L7_4c, l7::stonewall2);
+
+ */
+
+        IntStream stream = IntStream.range(1,50_001);
+        int[] tempArray = stream.toArray();
+        int[] L7_4d = new int[100_000];
+        for(int i = 0; i < tempArray.length; i++){ L7_4d[i] = tempArray[i];}
+        for(int i = 0; i < tempArray.length; i++){ L7_4d[2 * tempArray.length - 1 - i] = tempArray[i];}
+//        for(int entry : L7_4d){System.out.println(entry);}
+
+        l6.printIntArrayRetInt("stonewall2", L7_4d, l7::stonewall2);
+
+//        int[] L7_4e = {1,2,3,4,5,6,7,8,9,10,10,9,8,7,6,5,4,3,2,1};
+//        l6.printIntArrayRetInt("stonewall2", L7_4e, l7::stonewall2);
     }
-
 }

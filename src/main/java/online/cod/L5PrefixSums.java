@@ -200,47 +200,7 @@ public class L5PrefixSums {
         return retArray;
     }
 
-    // this failed all the tests
     public int[] genomicRangeSolution4(String S, int[] P, int[] Q) {
-        int returnedIndex;
-        boolean foundMinFlag;
-        int[] dummy = {0};
-        int[] retArray  = Arrays.copyOf(dummy, P.length);
-        char[] chars = S.toCharArray();
-
-        for(int i = 0; i < P.length; i++){
-            foundMinFlag = false;
-            while(!foundMinFlag){
-                returnedIndex = Arrays.binarySearch(chars, P[i], Q[i]+1, 'A');
-                if(returnedIndex > 0){
-                    retArray[i] = 1;
-                    foundMinFlag = true;
-                    break;
-                }
-                returnedIndex = Arrays.binarySearch(chars, P[i], Q[i]+1, 'C');
-                if(returnedIndex > 0){
-                    retArray[i] = 2;
-                    foundMinFlag = true;
-                    break;
-                }
-                returnedIndex = Arrays.binarySearch(chars, P[i], Q[i]+1, 'G');
-                if(returnedIndex > 0){
-                    retArray[i] = 3;
-                    foundMinFlag = true;
-                    break;
-                }
-                returnedIndex = Arrays.binarySearch(chars, P[i], Q[i]+1, 'T');
-                if(returnedIndex > 0){
-                    retArray[i] = 4;
-                    foundMinFlag = true;
-                    break;
-                }
-            }
-        }
-        return retArray;
-    }
-
-    public int[] genomicRangeSolution5(String S, int[] P, int[] Q) {
         int[] dummy = {0};
         int[] retArray  = Arrays.copyOf(dummy, P.length);
 
@@ -266,7 +226,7 @@ public class L5PrefixSums {
         return retArray;
     }
 
-    public int[] genomicRangeSolution6(String S, int[] P, int[] Q) {
+    public int[] genomicRangeSolution5(String S, int[] P, int[] Q) {
         char min;
         int[] dummy = {0};
         int[] retArray  = Arrays.copyOf(dummy, P.length);
@@ -279,6 +239,35 @@ public class L5PrefixSums {
                 if(min == 'A'){ break; }
             }
             retArray[i] = impFact(min);
+        }
+        return retArray;
+    }
+
+    public int[] genomicRangeSolution6(String S, int[] P, int[] Q) {
+        int[] dummy = {0};
+        int[] retArray  = Arrays.copyOf(dummy, P.length);
+        char minChar;
+
+        for(int i = 0; i < P.length; i++){
+            String subString = S.substring(P[i], Q[i] + 1);
+            char[] chars = subString.toCharArray();
+            Arrays.sort(chars);
+            minChar = chars[0];
+            switch(minChar){
+                case 'A':
+                    retArray[i] = 1;
+                    break;
+                case 'C':
+                    retArray[i] = 2;
+                    break;
+                case 'G':
+                    retArray[i] = 3;
+                    break;
+                default:
+                    retArray[i] = 4;
+                    break;
+            }
+
         }
         return retArray;
     }

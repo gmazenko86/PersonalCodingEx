@@ -3,7 +3,10 @@ package online.cod;
 
 import myioutils.MyIOUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class L6Sorting {
     // ***************** Lesson 6.1: Distinct
@@ -220,6 +223,53 @@ public class L6Sorting {
         return numinters;
     }
 
+    public int numberOfDiscIntersections6(int[] A) {
+
+        // will create an array list where each entry contains
+        // the left edge and the origin
+        ArrayList<long[]> arrayList = new ArrayList<>();
+        for(int i = 0; i < A.length; i++){
+            long[] listEntry = new long[2];
+            listEntry[0] = (long)i - (long)A[i];
+            listEntry[1] = (long)i;
+            arrayList.add(listEntry);
+        }
+        // now sort based on the left edge
+        Collections.sort(arrayList, new sortByLeftEdge());
+
+        int numinters = 0;
+        long k;
+        long leftJ; long rightJ; long leftK; long rightK;
+
+        for(int j = 0; j < A.length ; j++){
+            rightJ = (long)j + A[j];
+            k = 0;
+            leftK = (arrayList.get((int) k))[0];
+            while(leftK <= rightJ){
+                if((arrayList.get((int) k))[1] > j){
+                    rightK = (arrayList.get((int) k))[1] + (arrayList.get((int) k))[1] - (arrayList.get((int) k))[0];
+                    leftJ = (long)j - (long)A[j];
+                    if(rightK >= leftJ){ numinters += 1; }
+                    if(numinters > 10000000){ return -1; }
+                }
+                k += 1;
+                if(k >= A.length){ break; }
+                leftK = (arrayList.get((int) k))[0];
+            }
+        }
+        return numinters;
+    }
+
+    class sortByLeftEdge implements Comparator<long[]> {
+
+        @Override
+        public int compare(long[] o1, long[] o2) {
+            return (int) (o1[0] - o2[0]);
+        }
+    }
+
+
+
     boolean intersects2(long leftJ, long rightJ, long leftK, long rightK){
         if(leftJ < rightK && rightJ >= leftK){ return true; }
         if(rightJ > rightK && rightK >= leftJ){ return true; }
@@ -259,8 +309,8 @@ public class L6Sorting {
         return 0;
     }
 
-    // this solution scores 93/100.
-    // maxInts functional test still fails
+    // this solution scores 100/100.
+    // needed to typecast to long
     // all performance tests pass. Just changed 'while'
     // to 'if' on inside loop since there is no need
     // to check anything but the next value after the pair
@@ -274,7 +324,7 @@ public class L6Sorting {
         int lowIndex = 0;
 
         while(lowIndex < A.length-1){
-            pairSum = A[lowIndex] + A[lowIndex + 1];
+            pairSum = (long)A[lowIndex] + (long)A[lowIndex + 1];
             hiIndex = lowIndex + 2;
             if(hiIndex < A.length){
                 if(pairSum > (long)A[hiIndex]){
