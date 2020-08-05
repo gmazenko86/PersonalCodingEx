@@ -6,8 +6,10 @@ import online.cod.*;
 import java.io.InputStream;
 import java.util.Random;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.lang.Integer.toBinaryString;
+import static java.util.stream.IntStream.concat;
 
 public class OnlineMaster {
     static public void main(String... args){
@@ -314,6 +316,40 @@ public class OnlineMaster {
         for(int i = 0; i < tempArray.length; i++){ L7_4d[2 * tempArray.length - 1 - i] = tempArray[i];}
 
         l6.printIntArrayRetInt("stonewall2", L7_4d, l7::stonewall2);
+
+        // Lesson 8-1 : Dominator
+        L8Leader l8 = new L8Leader();
+        MyIOUtils.printlnBlueText("Running Demo " + l8.toString());
+        int[] L8_1 = {3,4,3,2,3,-1,3,3};
+        l6.printIntArrayRetInt("dominator1", L8_1, l8::dominator1);
+        int[] L8_1b = {2, 1, 1, 3};
+        l6.printIntArrayRetInt("dominator1", L8_1b, l8::dominator1);
+
+        // Lesson 8-2 : Equileaders
+        int[] L8_2 = {4,3,4,4,4,2};
+        l6.printIntArrayRetInt("equiLeader1", L8_2, l8::equiLeader1);
+        l6.printIntArrayRetInt("equiLeader2", L8_2, l8::equiLeader2);
+
+        IntStream intStream4 = new Random().ints(1000, 2, 4);
+        int[] L8_2big = intStream4.toArray();
+        l6.printIntArrayRetInt("equiLeader1", L8_2big, l8::equiLeader1);
+        l6.printIntArrayRetInt("equiLeader2", L8_2big, l8::equiLeader2);
+
+        int[] L8_2b = {2,3,3,3,3,3,3,2,2,2,3};
+        l6.printIntArrayRetInt("equiLeader1", L8_2b, l8::equiLeader1);
+        l6.printIntArrayRetInt("equiLeader2", L8_2b, l8::equiLeader2);
+
+        IntStream intStream5 = IntStream.rangeClosed(1, 10_001);
+        int[] L8_2c = intStream5.toArray();
+        l6.printIntArrayRetInt("equiLeader2", L8_2c, l8::equiLeader2);
+
+        IntStream intStream6 = new Random().ints(25_000, 0, 2);
+        IntStream intStream7 = new Random().ints(50_000, 0, 1);
+        IntStream intStream8 = new Random().ints(25_000, 0, 2);
+        IntStream intStream9 = IntStream.concat(concat(intStream6, intStream7), intStream8);
+        int[] L8_2d = intStream9.toArray();
+        l6.printIntArrayRetInt("equiLeader2", L8_2d, l8::equiLeader2);
+
 
     }
 }
