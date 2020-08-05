@@ -1,9 +1,36 @@
 package online.cod;
 
+import myioutils.MyIOUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class L2Arrays {
+
+    public void runLesson2(){
+        // Lesson 2-1 : Cyclic Rotation
+        MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+        int[] A = {3, 8, 9, 7, 6};
+        int K = 3;
+        for(int entry : A){System.out.print(entry + ", ");}
+        System.out.println("\n" + K + " rotations yields:");
+        rotateSolution(A, K);
+        for(int entry : A){System.out.print(entry + ", ");}
+        System.out.println();
+
+        // Lesson 2-2 : Odd occurrences in array
+        int[] B = {9, 3, 9, 3, 9, 7, 9};
+        int nonDuplicate = oddOccurSolution1(B);
+        for(int entry : B){System.out.print(entry + ", ");}
+        System.out.println();
+        System.out.println("oddOccurSolution1: Non duplicated value = " + nonDuplicate);
+        nonDuplicate = oddOccurSolution2(B);
+        System.out.println("oddOccurSolution2: Non duplicated value = " + nonDuplicate);
+        nonDuplicate = oddOccurSolution3(B);
+        System.out.println("oddOccurSolution3: Non duplicated value = " + nonDuplicate);
+        nonDuplicate = oddOccurSolution4(B);
+        System.out.println("oddOccurSolution4: Non duplicated value = " + nonDuplicate);
+    }
 
     public int[] rotateSolution(int[] A, int K) {
 

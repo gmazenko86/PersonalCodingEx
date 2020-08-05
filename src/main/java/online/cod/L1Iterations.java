@@ -1,8 +1,22 @@
 package online.cod;
 
+import myioutils.MyIOUtils;
+
+import java.util.Random;
+
 import static java.lang.Integer.toBinaryString;
 
 public class L1Iterations {
+
+    public void runLesson1(){
+        // Lesson 1 : Binary Gap
+        MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+        Random random = new Random();
+        int intParam = random.nextInt();
+        System.out.println(intParam);
+        System.out.println(toBinaryString(intParam));
+        System.out.println("Longest binary gap = " + this.runChallenge(intParam));
+    }
 
     public int runChallenge(int givenInt){
 

@@ -8,6 +8,118 @@ import java.util.LinkedList;
 import java.util.stream.IntStream;
 
 public class L7StacksQueues {
+    
+    public void runLesson7(){
+
+        // Lesson 7-1 : Brackets
+        MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+        MyPrintFuncs prn = new MyPrintFuncs();
+
+        String s7_1 = "{[()()]}";
+        prn.printStringRetInt("bracket1", s7_1, this::brackets1);
+        prn.printStringRetInt("bracket2", s7_1, this::brackets2);
+
+        String s7_2 = "({{({}[]{})}}[]{})";
+        System.out.println("The next one should return 1");
+        prn.printStringRetInt("bracket1", s7_2, this::brackets1);
+        prn.printStringRetInt("bracket2", s7_2, this::brackets2);
+
+
+        String s7_3 = "{}[]()";
+        System.out.println("Next should return 1");
+        prn.printStringRetInt("bracket1", s7_3, this::brackets1);
+        prn.printStringRetInt("bracket2", s7_3, this::brackets2);
+
+        String s7_4 = "([)()]";
+        System.out.println("Next should return 0");
+        prn.printStringRetInt("bracket1", s7_4, this::brackets1);
+        prn.printStringRetInt("bracket2", s7_4, this::brackets2);
+
+        String s7_5 = "({[)}]";
+        System.out.println("Next should return 0");
+        prn.printStringRetInt("bracket1", s7_5, this::brackets1);
+        prn.printStringRetInt("bracket2", s7_5, this::brackets2);
+
+        // Lesson 7-2 : Fish
+
+        int[] L7_2A = {4,3,2,1,5};
+        int[] L7_2B = {0,1,0,0,0};
+        prn.printIntArr2RetInt("fish1", L7_2A, L7_2B, this::fish1);
+        prn.printIntArr2RetInt("fish2", L7_2A, L7_2B, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2A, L7_2B, this::fish3);
+
+        int[] L7_2Ab = {1};
+        int[] L7_2Bb = {1};
+        prn.printIntArr2RetInt("fish1", L7_2Ab, L7_2Bb, this::fish1);
+        prn.printIntArr2RetInt("fish2", L7_2Ab, L7_2Bb, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2Ab, L7_2Bb, this::fish3);
+
+        int[] L7_2Ac = {5,4,3,2,1};
+        int[] L7_2Bc = {1,0,0,0,0};
+        prn.printIntArr2RetInt("fish1", L7_2Ac, L7_2Bc, this::fish1);
+        prn.printIntArr2RetInt("fish2", L7_2Ac, L7_2Bc, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2Ac, L7_2Bc, this::fish3);
+
+        int[] L7_2Ad = {5,4,3,2,1};
+        int[] L7_2Bd = {0,0,0,0,1};
+        prn.printIntArr2RetInt("fish1", L7_2Ad, L7_2Bd, this::fish1);
+        prn.printIntArr2RetInt("fish2", L7_2Ad, L7_2Bd, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2Ad, L7_2Bd, this::fish3);
+
+        int[] L7_2Ae = {4,9,2,6,5,7,3,8,1};
+        int[] L7_2Be = {0,1,0,1,1,1,0,1,0};
+        prn.printIntArr2RetInt("fish2", L7_2Ae, L7_2Be, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2Ae, L7_2Be, this::fish3);
+
+        int[] L7_2Af = {4,9,2,6,5,7,3,8,1};
+        int[] L7_2Bf = {0,1,0,1,0,0,0,1,0};
+        prn.printIntArr2RetInt("fish2", L7_2Af, L7_2Bf, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2Af, L7_2Bf, this::fish3);
+
+        int[] L7_2Ag = {13,30,9,29,8,7,12,28,6,26,14,15,2,1,24,19,11,20,23,16,3,5,18,17,10,25,27,4,22,21};
+        int[] L7_2Bg = {1,0,1,1,1,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0};
+        prn.printIntArr2RetInt("fish2", L7_2Ag, L7_2Bg, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2Ag, L7_2Bg, this::fish3);
+
+        int[] L7_2Ah = {10,4,9,2,6,5,7,3,8,1};
+        int[] L7_2Bh = {1,0,0,0,1,0,0,0,0,0};
+        prn.printIntArr2RetInt("fish2", L7_2Ah, L7_2Bh, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2Ah, L7_2Bh, this::fish3);
+
+        int[] L7_2Ai = {1,2,3};
+        int[] L7_2Bi = {1,1,0};
+        prn.printIntArr2RetInt("fish2", L7_2Ai, L7_2Bi, this::fish2);
+        prn.printIntArr2RetInt("fish3", L7_2Ai, L7_2Bi, this::fish3);
+
+        // Lesson 7-3 : Nesting
+        String L7_3 = "(()(())())";
+        prn.printStringRetInt("nest1", L7_3, this::nest1);
+        String L7_3b =  "())";
+        prn.printStringRetInt("nest1", L7_3b, this::nest1);
+
+        // Lesson 7-4 : Nesting
+
+        int[] L7_4 = {8,8,5,7,9,8,7,4,8};
+        prn.printIntArrRetInt("stonewall1", L7_4, this::stonewall1);
+        prn.printIntArrRetInt("stonewall2", L7_4, this::stonewall2);
+
+        int[] L7_4b = {2, 5, 1, 4, 6, 7, 9, 10, 1};
+        prn.printIntArrRetInt("stonewall1", L7_4b, this::stonewall1);
+        prn.printIntArrRetInt("stonewall2", L7_4b, this::stonewall2);
+
+        int[] L7_4c = {1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,4,3,2,1};
+        prn.printIntArrRetInt("stonewall2", L7_4c, this::stonewall2);
+
+        // test and fix the known failure
+        IntStream stream = IntStream.range(1,50_001);
+        int[] tempArray = stream.toArray();
+        int[] L7_4d = new int[100_000];
+        for(int i = 0; i < tempArray.length; i++){ L7_4d[i] = tempArray[i];}
+        for(int i = 0; i < tempArray.length; i++){ L7_4d[2 * tempArray.length - 1 - i] = tempArray[i];}
+
+        prn.printIntArrRetInt("stonewall2", L7_4d, this::stonewall2);
+
+    }
 
     // ********** L7-1: Brackets
 
@@ -322,40 +434,4 @@ public class L7StacksQueues {
         return pushes;
     }
 
-    // *******************************************************
-
-    @FunctionalInterface
-    public interface IntArr2RetInt{
-        int accept(int[] A, int[] B);
-    }
-
-    @FunctionalInterface
-    public interface StringRetInt{
-
-        int accept(String string);
-    }
-
-    public void printStringRetInt(String functionName, String inputString, StringRetInt function){
-        if(inputString.length()< 40){
-            MyIOUtils.printYellowText("Input string = " + inputString);
-        } else {
-            MyIOUtils.printYellowText("Processing large input string");
-        }
-        int retVal = function.accept(inputString);
-        System.out.println("\n" + functionName + " returns " + retVal);
-    }
-
-    public void printIntArr2RetInt(String functionName, int[] A, int[] B, IntArr2RetInt function){
-        if(A.length < 40){
-            MyIOUtils.printYellowText("Input array A = ");
-            for(int entry : A){System.out.print(entry + ", ");}
-            System.out.println();
-            MyIOUtils.printYellowText("Input array B = ");
-            for(int entry : B){System.out.print(entry + ", ");}
-        } else {
-            MyIOUtils.printYellowText("Processing large input array");
-        }
-        int retVal = function.accept(A, B);
-        System.out.println("\n" + functionName + " returns " + retVal);
-    }
 }

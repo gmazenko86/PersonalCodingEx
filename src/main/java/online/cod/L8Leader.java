@@ -1,9 +1,52 @@
 package online.cod;
 
+import myioutils.MyIOUtils;
+
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.stream.IntStream;
+
+import static java.util.stream.IntStream.concat;
 
 public class L8Leader {
+    
+    public void runLesson8(){
+        MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+        MyPrintFuncs prn = new MyPrintFuncs();
+        
+        // Lesson 8-1 : Dominator        
+        int[] L8_1 = {3,4,3,2,3,-1,3,3};
+        prn.printIntArrRetInt("dominator1", L8_1, this::dominator1);
+        int[] L8_1b = {2, 1, 1, 3};
+        prn.printIntArrRetInt("dominator1", L8_1b, this::dominator1);
+
+        // Lesson 8-2 : Equileaders
+        int[] L8_2 = {4,3,4,4,4,2};
+        prn.printIntArrRetInt("equiLeader1", L8_2, this::equiLeader1);
+        prn.printIntArrRetInt("equiLeader2", L8_2, this::equiLeader2);
+
+        IntStream intStream4 = new Random().ints(1000, 2, 4);
+        int[] L8_2big = intStream4.toArray();
+        prn.printIntArrRetInt("equiLeader1", L8_2big, this::equiLeader1);
+        prn.printIntArrRetInt("equiLeader2", L8_2big, this::equiLeader2);
+
+        int[] L8_2b = {2,3,3,3,3,3,3,2,2,2,3};
+        prn.printIntArrRetInt("equiLeader1", L8_2b, this::equiLeader1);
+        prn.printIntArrRetInt("equiLeader2", L8_2b, this::equiLeader2);
+
+        IntStream intStream5 = IntStream.rangeClosed(1, 10_001);
+        int[] L8_2c = intStream5.toArray();
+        prn.printIntArrRetInt("equiLeader2", L8_2c, this::equiLeader2);
+
+        IntStream intStream6 = new Random().ints(25_000, 0, 2);
+        IntStream intStream7 = new Random().ints(50_000, 0, 1);
+        IntStream intStream8 = new Random().ints(25_000, 0, 2);
+        IntStream intStream9 = IntStream.concat(concat(intStream6, intStream7), intStream8);
+        int[] L8_2d = intStream9.toArray();
+        prn.printIntArrRetInt("equiLeader2", L8_2d, this::equiLeader2);
+
+    }
 
     // ********** L8-1: Leader
 

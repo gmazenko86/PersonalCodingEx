@@ -3,12 +3,70 @@ package online.cod;
 
 import myioutils.MyIOUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class L6Sorting {
+    public void runLesson6(){
+        // Lesson 6-1 : Distinct
+        MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+        MyPrintFuncs prn = new MyPrintFuncs();
+        
+        int[] L6_1 = {2,1,1,2,3,1};
+        prn.printIntArrRetInt("distinctSolution1", L6_1, this::distinctSolution1);
+
+        // Lesson 6-2 : MaxProductOfThree
+        int[] L6_2 = {-3,1,2,-2,5,6};
+        prn.printIntArrRetInt("maxProductofThreeSolution1", L6_2, this::maxProdThree1);
+        prn.printIntArrRetInt("maxProductofThreeSolution2", L6_2, this::maxProdThree2);
+        int[] L6_2b = {10,10,10};
+        prn.printIntArrRetInt("maxProductofThreeSolution2", L6_2b, this::maxProdThree2);
+
+        // Lesson 6-3 : NumberOfDiscIntersections
+        int[] L6_2c = {1,5,2,1,4,0};
+        prn.printIntArrRetInt("numDiscIntersect1", L6_2c, this::numDiscIntersect1);
+        prn.printIntArrRetInt("numDiscIntersect2", L6_2c, this::numDiscIntersect2);
+        prn.printIntArrRetInt("numDiscIntersect3", L6_2c, this::numDiscIntersect3);
+        prn.printIntArrRetInt("numDiscIntersect4", L6_2c, this::numDiscIntersect4);
+        prn.printIntArrRetInt("numDiscIntersect5", L6_2c, this::numDiscIntersect5);
+        prn.printIntArrRetInt("numDiscIntersect6", L6_2c, this::numDiscIntersect6);
+        int[] L6_2d = {0,0,0,0,0,0,0,0,0,2147483647};
+        prn.printIntArrRetInt("numDiscIntersect1", L6_2d, this::numDiscIntersect1);
+        prn.printIntArrRetInt("numDiscIntersect2", L6_2d, this::numDiscIntersect2);
+        prn.printIntArrRetInt("numDiscIntersect3", L6_2d, this::numDiscIntersect3);
+        prn.printIntArrRetInt("numDiscIntersect4", L6_2d, this::numDiscIntersect4);
+        prn.printIntArrRetInt("numDiscIntersect5", L6_2d, this::numDiscIntersect5);
+        prn.printIntArrRetInt("numDiscIntersect6", L6_2d, this::numDiscIntersect6);
+
+        IntStream intStream1 = new Random().ints(10000, 0, 1000);
+//        IntStream intStream1 = IntStream.rangeClosed(0, 1_000);
+        int[] L6_3huge = intStream1.toArray();
+        prn.printIntArrRetInt("numDiscIntersect2", L6_3huge, this::numDiscIntersect2);
+        prn.printIntArrRetInt("numDiscIntersect3", L6_3huge, this::numDiscIntersect3);
+        prn.printIntArrRetInt("numDiscIntersect4", L6_3huge, this::numDiscIntersect4);
+        prn.printIntArrRetInt("numDiscIntersect5", L6_3huge, this::numDiscIntersect5);
+        prn.printIntArrRetInt("numDiscIntersect6", L6_3huge, this::numDiscIntersect6);
+
+        // Lesson 6-4 : Triangles
+        int[] L6_4 = {10,2,5,1,8,20};
+        prn.printIntArrRetInt("triangle1", L6_4, this::triangle1);
+        prn.printIntArrRetInt("triangle2", L6_4, this::triangle2);
+
+        int[] L6_4b = {10,50,5,1};
+        prn.printIntArrRetInt("triangle1", L6_4b, this::triangle1);
+        prn.printIntArrRetInt("triangle2", L6_4b, this::triangle2);
+
+        int[] L6_4c = {Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE};
+        prn.printIntArrRetInt("triangle1", L6_4c, this::triangle1);
+        prn.printIntArrRetInt("triangle2", L6_4c, this::triangle2);
+
+        IntStream intStream3 = new Random().ints(10_000, -10, 0);
+        int[] L6_4huge = intStream3.toArray();
+        prn.printIntArrRetInt("triangle1", L6_4huge, this::triangle1);
+        prn.printIntArrRetInt("triangle2", L6_4huge, this::triangle2);
+
+    }
+    
     // ***************** Lesson 6.1: Distinct
     // distinctSolution1 scored 100/100
 
@@ -40,7 +98,7 @@ public class L6Sorting {
     // ***************** Lesson 6.2: MaxProductOfThree
     // this solution scored 44/100. Did not follow instructions
     // carefully. It's ok for A[P] == A[Q] == A[R]. {10, 10, 10} is valid input
-    public int maxProductofThreeSolution1(int[] A){
+    public int maxProdThree1(int[] A){
         Arrays.sort(A);
         int lowPair; int hiPair;
         int maxLow; int maxHigh;
@@ -87,7 +145,7 @@ public class L6Sorting {
     }
 
     // this solution scored 100/100
-    public int maxProductofThreeSolution2(int[] A){
+    public int maxProdThree2(int[] A){
         Arrays.sort(A);
         int lowPair; int hiPair;
         int maxLow; int maxHigh;
@@ -105,7 +163,7 @@ public class L6Sorting {
     // this solution scored 56/100. 8/8 functional tests passed
     // 1/8 performance tests passed. 10M intersections could take
     // 15 minutes or so to process
-    public int numberOfDiscIntersections1(int[] A) {
+    public int numDiscIntersect1(int[] A) {
 
         int numinters = 0;
         long leftJ; long rightJ; long leftK; long rightK;
@@ -139,7 +197,7 @@ public class L6Sorting {
         return false;
     }
 
-    public int numberOfDiscIntersections2(int[] A) {
+    public int numDiscIntersect2(int[] A) {
 
         int numinters = 0;
         long leftJ; long rightJ; long leftK; long rightK;
@@ -163,7 +221,7 @@ public class L6Sorting {
 
     // this 1 function solution is much simpler code-wise
     // but still only scores 56/100, same as solution 2
-    public int numberOfDiscIntersections3(int[] A) {
+    public int numDiscIntersect3(int[] A) {
 
         int numinters = 0;
         long leftJ; long rightJ; long leftK; long rightK;
@@ -184,7 +242,7 @@ public class L6Sorting {
     }
 
     // 33% improvement in ms/op, but no more passed test cases
-    public int numberOfDiscIntersections4(int[] A) {
+    public int numDiscIntersect4(int[] A) {
 
         int numinters = 0;
         long rightJ; long leftK;
@@ -205,7 +263,7 @@ public class L6Sorting {
     // another 20% improvement in ms/op. score now 62/200
     // 1 more performance test passes. Most are still not
     // close. Need to eliminate the nested loop
-    public int numberOfDiscIntersections5(int[] A) {
+    public int numDiscIntersect5(int[] A) {
 
         int numinters = 0;
         long rightJ; long leftK;
@@ -223,7 +281,7 @@ public class L6Sorting {
         return numinters;
     }
 
-    public int numberOfDiscIntersections6(int[] A) {
+    public int numDiscIntersect6(int[] A) {
 
         // will create an array list where each entry contains
         // the left edge and the origin
@@ -334,19 +392,6 @@ public class L6Sorting {
             lowIndex += 1;
         }
         return 0;
-    }
-
-    // *******************************************************
-    public void printIntArrayRetInt(String functionName, int[] A,
-                                            L4CountingElements.IntArrayRetInt function){
-        if(A.length < 20){
-            MyIOUtils.printYellowText("Input array = ");
-            for(int entry : A){ System.out.print(entry + ", "); }
-        } else {
-            MyIOUtils.printYellowText("Processing large input array");
-        }
-        int retVal = function.accept(A);
-        System.out.println("\n" + functionName + " returns " + retVal);
     }
 
 }

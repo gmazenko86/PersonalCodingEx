@@ -3,12 +3,66 @@ package online.cod;
 import myioutils.MyIOUtils;
 
 import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 public class L5PrefixSums {
 
-    // ********** L5-1: CountDiv
+    public void runLesson5(){
+        // Lesson 5-1 : CountDiv
+        MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+        MyPrintFuncs prn = new MyPrintFuncs();
 
-    public int countDivSolution1(int A, int B, int K){
+        int A5 = 6; int B5 = 11; int K5 = 2;
+        prn.printIntIntIntRetInt("countDiv1", A5, B5, K5, this::countDiv1);
+        prn.printIntIntIntRetInt("countDiv2", A5, B5, K5, this::countDiv2);
+        prn.printIntIntIntRetInt("countDiv3", A5, B5, K5, this::countDiv3);
+
+        // Lesson 5-2 : Genomic Range Query
+        String str1 = "ACGTACGTACGTACGTACGTACGT";
+        int[] P1 = {5,10,15}; int[] Q1 = {23,18,15};
+        System.out.println();
+        prn.printStringIntArr2RetIntArr("genomicRange1", str1, P1, Q1, this::genomicRange1);
+
+        String str2 = "CAGCCTA";
+        int[] P2 = {2,5,0}; int[] Q2 = {4,5,6};
+        prn.printStringIntArr2RetIntArr("genomicRange1", str2, P2, Q2, this::genomicRange1);
+        prn.printStringIntArr2RetIntArr("genomicRange2", str2, P2, Q2, this::genomicRange2);
+        prn.printStringIntArr2RetIntArr("genomicRange3", str2, P2, Q2, this::genomicRange3);
+        prn.printStringIntArr2RetIntArr("genomicRange4", str2, P2, Q2, this::genomicRange4);
+        prn.printStringIntArr2RetIntArr("genomicRange5", str2, P2, Q2, this::genomicRange5);
+        prn.printStringIntArr2RetIntArr("genomicRange6", str2, P2, Q2, this::genomicRange6);
+
+        // Lesson 5-3 : MinAvgTwoSlice
+        System.out.println();
+        int[] L5_3 = {4,2,2,5,1,5,8};
+        prn.printIntArrRetInt("minAvgTwoSlice1", L5_3, this::minAvgTwoSlice1);
+        prn.printIntArrRetInt("minAvgTwoSlice2", L5_3, this::minAvgTwoSlice2);
+        prn.printIntArrRetInt("minAvgTwoSlice3", L5_3, this::minAvgTwoSlice3);
+        prn.printIntArrRetInt("minAvgTwoSlice4", L5_3, this::minAvgTwoSlice4);
+
+        int[] L5_3b = {-3,-5,-8,-4,-10};
+        prn.printIntArrRetInt("minAvgTwoSlice1", L5_3b, this::minAvgTwoSlice1);
+        prn.printIntArrRetInt("minAvgTwoSlice2", L5_3b, this::minAvgTwoSlice2);
+        prn.printIntArrRetInt("minAvgTwoSlice3", L5_3b, this::minAvgTwoSlice3);
+        prn.printIntArrRetInt("minAvgTwoSlice4", L5_3b, this::minAvgTwoSlice4);
+
+        IntStream intStream2 = new Random().ints(100000, -10000, 10001);
+        int[] bigArray2 = intStream2.toArray();
+        prn.printIntArrRetInt("minAvgTwoSlice4", bigArray2, this::minAvgTwoSlice4);
+
+        IntStream intStream = new Random().ints(100000, -1, 2);
+        int[] bigArray = intStream.toArray();
+        prn.printIntArrRetInt("minAvgTwoSlice4", bigArray, this::minAvgTwoSlice4);
+
+        // Lesson 5-4 : Passing Cars
+        int[] L5_4 = {0,1,0,1,1};
+        prn.printIntArrRetInt("passingCars1", L5_4, this::passingCars1);
+        
+    }
+    
+    // ********** L5-1: CountDiv
+    public int countDiv1(int A, int B, int K){
         if(K > B){ return 0; }
 
         int numDivisible = 0;
@@ -27,7 +81,7 @@ public class L5PrefixSums {
 
     // this solution got 87/100. 2 of 3 previous failures passed
     // remaining failure : A = B in {0,1}, K = 11 ; got 0 expected 1
-    public int countDivSolution2(int A, int B, int K){
+    public int countDiv2(int A, int B, int K){
         if(K > B){ return 0; }
 
         int numDivisible = 0;
@@ -46,7 +100,7 @@ public class L5PrefixSums {
     }
 
     // this solution scored 100/100
-    public int countDivSolution3(int A, int B, int K){
+    public int countDiv3(int A, int B, int K){
         if(K > B){
             if(A == 0) return 1;
             else return 0;
@@ -71,7 +125,7 @@ public class L5PrefixSums {
 
     // this 2 function solution received 50/100. 1/5 functional tests failed
     // 3/3 performance tests failed
-    public int[] genomicRangeSolution1(String S, int[] P, int[] Q) {
+    public int[] genomicRange1(String S, int[] P, int[] Q) {
         int[] dummy = {0};
         int[] retArray  = Arrays.copyOf(dummy, P.length);
 
@@ -119,7 +173,7 @@ public class L5PrefixSums {
     // failed test1: almost_all_same_letters GGGGGG..??..GGGGGG..??..GGGGGG:
     // Killed. Hard limit reached: 9.000 sec.
     // failed test2: extreme_large all max ranges: Killed. Hard limit reached: 10.000
-    public int[] genomicRangeSolution2(String S, int[] P, int[] Q) {
+    public int[] genomicRange2(String S, int[] P, int[] Q) {
         int returnedIndex;
         boolean foundMinFlag;
         int[] dummy = {0};
@@ -162,7 +216,7 @@ public class L5PrefixSums {
     // note 'A' vs "A" . Different library function
     // did 33% better than solution 2 on my own benchmarks,
     // but does not improve the test score
-    public int[] genomicRangeSolution3(String S, int[] P, int[] Q) {
+    public int[] genomicRange3(String S, int[] P, int[] Q) {
         int returnedIndex;
         boolean foundMinFlag;
         int[] dummy = {0};
@@ -200,7 +254,7 @@ public class L5PrefixSums {
         return retArray;
     }
 
-    public int[] genomicRangeSolution4(String S, int[] P, int[] Q) {
+    public int[] genomicRange4(String S, int[] P, int[] Q) {
         int[] dummy = {0};
         int[] retArray  = Arrays.copyOf(dummy, P.length);
 
@@ -226,7 +280,7 @@ public class L5PrefixSums {
         return retArray;
     }
 
-    public int[] genomicRangeSolution5(String S, int[] P, int[] Q) {
+    public int[] genomicRange5(String S, int[] P, int[] Q) {
         char min;
         int[] dummy = {0};
         int[] retArray  = Arrays.copyOf(dummy, P.length);
@@ -243,7 +297,7 @@ public class L5PrefixSums {
         return retArray;
     }
 
-    public int[] genomicRangeSolution6(String S, int[] P, int[] Q) {
+    public int[] genomicRange6(String S, int[] P, int[] Q) {
         int[] dummy = {0};
         int[] retArray  = Arrays.copyOf(dummy, P.length);
         char minChar;
@@ -280,7 +334,7 @@ public class L5PrefixSums {
     // For example, for the input [-3, -5, -8, -4, -10] the solution returned
     // a wrong answer (got 3 expected 2).
 
-    public int minAvgTwoSliceSolution1(int[] A) {
+    public int minAvgTwoSlice1(int[] A) {
         int sum; double avg; double minAvg = 10001.;
         int saveIndex = 0; int length;
 
@@ -314,7 +368,7 @@ public class L5PrefixSums {
     // if(nextVal(A, j) > minAvg){ break; } in solution 1
     // caused functional cases to fail if slice length > 2
     // like with [-3,-5,-8,-4,-10] which returned 3 instead of 2
-    public int minAvgTwoSliceSolution2(int[] A) {
+    public int minAvgTwoSlice2(int[] A) {
         int sum; double avg; double minAvg = 10001.;
         int saveIndex = 0; int length;
 
@@ -341,7 +395,7 @@ public class L5PrefixSums {
     // only 10% better, and made many functional tests fail
     // adding a check whether we've hit the min possible did not cause
     // more tests to pass
-    public int minAvgTwoSliceSolution3(int[] A) {
+    public int minAvgTwoSlice3(int[] A) {
         int sum; double avg; double minAvg = 10001.;
         int saveIndex = 0; int length;
 
@@ -371,7 +425,7 @@ public class L5PrefixSums {
     // 2/5 performance tests still fail
     // numbers from -1 to 1, N = ~100,000 : Killed. Hard limit reached: 6.000 sec.
     // all maximal values, N = ~100,000 : Killed. Hard limit reached: 7.000 sec.
-    public int minAvgTwoSliceSolution4(int[] A) {
+    public int minAvgTwoSlice4(int[] A) {
 
         int lowIndex = 0; int highIndex = 1;
         double average;
@@ -404,7 +458,7 @@ public class L5PrefixSums {
     // ********** L5-4: PassingCars
 
     // this solution scored 100/100
-    public int passingCarsSolution1(int[] A){
+    public int passingCars1(int[] A){
         int totalSum = 0; int leftSum = 0; int rightSum;
         int totalPassing = 0;
         int passing;
@@ -425,52 +479,6 @@ public class L5PrefixSums {
         return totalPassing;
     }
 
-
-    // *******************************************************
-
-    @FunctionalInterface
-    public interface IntIntIntRetInt {
-        int accept(int A, int B, int K);
-    }
-
-    public void printCountDivSolution(int id, int A, int B, int K, IntIntIntRetInt function){
-        System.out.print("A = " + A + "; B = " + B + "; K = " + K);
-        int retVal = function.accept(A, B, K);
-        System.out.print("\ncountDivSolution" + id + " returns " + retVal);
-        System.out.println();
-    }
-
-    @FunctionalInterface
-    public interface StringIntArr2RetIntArr{
-        int[] accept(String S, int[] P, int[] Q);
-    }
-
-    public void printGenomicRangeSolution(int id, String S, int[] P, int[] Q,
-                                          StringIntArr2RetIntArr function){
-        System.out.println("Genome String = " + S);
-        int[] retArray = function.accept(S, P, Q);
-        System.out.print("Array P = ");
-        for(int entry : P){ System.out.print(entry + ", ");}
-        System.out.println();
-        System.out.print("Array Q = ");
-        for(int entry : Q){ System.out.print(entry + ", ");}
-        System.out.println();
-        System.out.print("genomicRangeSolution" + id + " returns ");
-        for(int entry : retArray){ System.out.print(entry + ", ");}
-        System.out.println();
-    }
-
-    public void printMinAvgTwoSliceSolution(int id, int[] A,
-                                             L4CountingElements.IntArrayRetInt function){
-        if(A.length < 20){
-            MyIOUtils.printYellowText("Input array = ");
-            for(int entry : A){ System.out.print(entry + ", "); }
-        } else {
-            MyIOUtils.printYellowText("Processing large input array");
-        }
-        int minSliceIndex = function.accept(A);
-        System.out.println("\nminAvgTwoSliceSolution" + id + " returns " + minSliceIndex);
-    }
 }
 
 
