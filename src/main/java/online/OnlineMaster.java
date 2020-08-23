@@ -10,7 +10,7 @@ import static java.util.stream.IntStream.concat;
 
 public class OnlineMaster {
     static public void main(String... args){
-
+/*
         // Lesson 1 : Binary Gap
         L1Iterations l1 = new L1Iterations();
         l1.runLesson1();
@@ -39,9 +39,13 @@ public class OnlineMaster {
         L7StacksQueues l7 = new L7StacksQueues();
         l7.runLesson7();
 
-        // Lesson 8: Leader
+        // Lesson 8 : Leader
         L8Leader l8 = new L8Leader();
         l8.runLesson8();
+*/
+        // Lesson 9 : Max slice
+        L9MaxSlice l9 = new L9MaxSlice();
+        l9.runLesson9();
 
 
     }

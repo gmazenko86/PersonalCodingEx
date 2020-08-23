@@ -56,7 +56,7 @@ public class MyPrintFuncs {
 
     public void printIntArrRetInt(String functionName, int[] A,
                                   MyFuncInterfaces.IntArrayRetInt function){
-        if(A.length < 20){
+        if(A.length < 40){
             MyIOUtils.printYellowText("Input array = ");
             for(int entry : A){ System.out.print(entry + ", "); }
         } else {
