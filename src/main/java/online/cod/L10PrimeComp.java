@@ -188,9 +188,9 @@ public class L10PrimeComp {
 
     // ********** L10-4: Peaks
 
-    // scored 81/100
+    // scored 100/100
     // 6/6 functional tests passed
-    // 3/5 performance tests passed. 2 failures for wrong answers
+    // 5/5 performance tests passed
     // Detected time complexity: O(N * log(log(N)))
 
     public int peaks1(int[] A){
@@ -212,7 +212,7 @@ public class L10PrimeComp {
         Collections.sort(factors);
         int factorIndex = 0;
         int peakIndex = 0;
-        int lowIndex = 0; int hiIndex = 0;
+        int lowIndex; int hiIndex;
         boolean blockHasPeak = true;
         int numInBlock;
         int numBlocks;
@@ -235,9 +235,11 @@ public class L10PrimeComp {
                 if(blockHasPeak) { return numBlocks; }
             }
             factorIndex += 1;
+            peakIndex = 0;
             blockHasPeak = true;
         }
         return 0;
     }
+
 
 }
