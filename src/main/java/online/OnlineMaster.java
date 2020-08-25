@@ -42,12 +42,16 @@ public class OnlineMaster {
         // Lesson 8 : Leader
         L8Leader l8 = new L8Leader();
         l8.runLesson8();
-*/
+
         // Lesson 9 : Max slice
         L9MaxSlice l9 = new L9MaxSlice();
         l9.runLesson9();
 
+ */
 
+        // Lesson 10 : Prime and Composite
+        L10PrimeComp l10 = new L10PrimeComp();
+        l10.runLesson10();
     }
 
 }

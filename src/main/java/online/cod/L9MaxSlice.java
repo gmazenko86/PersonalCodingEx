@@ -5,10 +5,6 @@ import myioutils.MyIOUtils;
 import java.util.*;
 import java.util.stream.IntStream;
 
-import org.apache.commons.lang3.ArrayUtils.*;
-import static org.apache.commons.lang3.ArrayUtils.indexesOf;
-import static org.apache.commons.lang3.ArrayUtils.toArray;
-
 public class L9MaxSlice {
 
     public void runLesson9(){
@@ -32,13 +28,13 @@ public class L9MaxSlice {
         prn.printIntArrRetInt("maxDoubleSliceSum2", L9_2, this::maxDoubleSliceSum2);
         prn.printIntArrRetInt("maxDoubleSliceSum3", L9_2, this::maxDoubleSliceSum3);
 
-//        IntStream intStream = new Random().ints(300, -30,31);
-//        int[] L9_3 = intStream.toArray();
+        IntStream intStream = new Random().ints(300, -30,31);
+        int[] L9_3 = intStream.toArray();
 
 
-        int[] L9_3 = {-10,20,11,-20,23,1,19,23,-29,17,23,11,27,-1,-18,-22,29,-16,17,18,-26,2,-24,-26,-18,-29,1,28,12,12};
-        prn.printIntArrRetInt("maxDoubleSliceSum1", L9_3, this::maxDoubleSliceSum1);
-        prn.printIntArrRetInt("maxDoubleSliceSum2", L9_3, this::maxDoubleSliceSum2);
+        int[] L9_3a = {-10,20,11,-20,23,1,19,23,-29,17,23,11,27,-1,-18,-22,29,-16,17,18,-26,2,-24,-26,-18,-29,1,28,12,12};
+        prn.printIntArrRetInt("maxDoubleSliceSum1", L9_3a, this::maxDoubleSliceSum1);
+        prn.printIntArrRetInt("maxDoubleSliceSum2", L9_3a, this::maxDoubleSliceSum2);
         int[] L9_4 = {5,17,0,3};
         prn.printIntArrRetInt("maxDoubleSliceSum1", L9_4, this::maxDoubleSliceSum1);
         prn.printIntArrRetInt("maxDoubleSliceSum2", L9_4, this::maxDoubleSliceSum2);
@@ -73,10 +69,10 @@ public class L9MaxSlice {
         prn.printIntArrRetInt("maxDoubleSliceSum1", L9_11, this::maxDoubleSliceSum1);
         prn.printIntArrRetInt("maxDoubleSliceSum2", L9_11, this::maxDoubleSliceSum2);
 
-/*
-        int[] L9_2 = {23171,21011,21123,21366,21013,21367};
-        prn.printIntArrRetInt("maxProfit1", L9_2, this::maxProfit1);
-        prn.printIntArrRetInt("maxProfit2", L9_2, this::maxProfit2);
+
+        int[] L9_2a = {23171,21011,21123,21366,21013,21367};
+        prn.printIntArrRetInt("maxProfit1", L9_2a, this::maxProfit1);
+        prn.printIntArrRetInt("maxProfit2", L9_2a, this::maxProfit2);
 
         int[] L9_2b = {5,4,3,2,1};
         prn.printIntArrRetInt("maxProfit1", L9_2b, this::maxProfit1);
@@ -96,13 +92,13 @@ public class L9MaxSlice {
         prn.printIntArrRetInt("maxProfit1", ints, this::maxProfit1);
         prn.printIntArrRetInt("maxProfit2", ints, this::maxProfit2);
 
-        int[] L9_3a = {-2,1};
-        prn.printIntArrRetInt("maxSlice1", L9_3a, this::maxSlice1);
-        prn.printIntArrRetInt("maxSlice2", L9_3a, this::maxSlice2);
+        int[] L9_3e = {-2,1};
+        prn.printIntArrRetInt("maxSlice1", L9_3e, this::maxSlice1);
+        prn.printIntArrRetInt("maxSlice2", L9_3e, this::maxSlice2);
 
-        int[] L9_3 = {3,2,-6,4,0};
-        prn.printIntArrRetInt("maxSlice1", L9_3, this::maxSlice1);
-        prn.printIntArrRetInt("maxSlice2", L9_3, this::maxSlice2);
+        int[] L9_3f = {3,2,-6,4,0};
+        prn.printIntArrRetInt("maxSlice1", L9_3f, this::maxSlice1);
+        prn.printIntArrRetInt("maxSlice2", L9_3f, this::maxSlice2);
 
         int[] L9_3b = {-10,20,11,-20,23,1,19,23,-29,17,23,11,27,-1,-18,-22,29,-16,17,18,-26,2,-24,-26,-18,-29,1,28,12,12};
         prn.printIntArrRetInt("maxSlice1", L9_3b, this::maxSlice1);
@@ -116,7 +112,6 @@ public class L9MaxSlice {
         prn.printIntArrRetInt("maxSlice1", L9_3d, this::maxSlice1);
         prn.printIntArrRetInt("maxSlice2", L9_3d, this::maxSlice2);
 
- */
 
     }
 

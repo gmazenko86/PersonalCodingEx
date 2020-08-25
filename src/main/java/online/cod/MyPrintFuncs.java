@@ -2,6 +2,10 @@ package online.cod;
 
 import myioutils.MyIOUtils;
 
+import java.sql.SQLSyntaxErrorException;
+import java.util.function.IntFunction;
+import java.util.function.ToIntFunction;
+
 public class MyPrintFuncs {
 
     // Don't want 5 different print functions for 5 solutions
@@ -87,6 +91,12 @@ public class MyPrintFuncs {
             MyIOUtils.printYellowText("Processing large input array");
         }
         int retVal = function.accept(A, B);
+        System.out.println("\n" + functionName + " returns " + retVal);
+    }
+
+    public void printIntRetInt(String functionName, int N, ToIntFunction<Integer> function){
+        MyIOUtils.printYellowText("Input value N = " + N);
+        int retVal = function.applyAsInt(N);
         System.out.println("\n" + functionName + " returns " + retVal);
     }
 }
