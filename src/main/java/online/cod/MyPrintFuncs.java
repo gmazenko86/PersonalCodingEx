@@ -70,6 +70,45 @@ public class MyPrintFuncs {
         System.out.println("\n" + functionName + " returns " + retVal);
     }
 
+    public void printIntArrRetIntArr(String functionName, int[] A,
+                                  MyFuncInterfaces.IntArrRetIntArr function){
+        if(A.length < 40){
+            MyIOUtils.printYellowText("Input array = \t\t\t\t");
+            for(int entry : A){ System.out.print(entry + ", "); }
+        } else {
+            MyIOUtils.printYellowText("Processing large input array");
+        }
+        int[] retVal = function.accept(A);
+        if(retVal.length < 40){
+            System.out.print("\n" + functionName + " returns \t\t");
+            for(int entry : retVal){ System.out.print(entry + ", "); }
+            System.out.println();
+        } else {
+            System.out.println("\n" + functionName + " returns a large array");
+        }
+    }
+
+    public void printIntIntArr2RetIntArr(String functionName, int N, int[] P, int[] Q,
+                                     MyFuncInterfaces.IntIntArr2RetIntArr function){
+        if(P.length < 40){
+            MyIOUtils.printYellowText("Input array P = ");
+            for(int entry : P){ System.out.print(entry + ", "); }
+            System.out.println();
+            MyIOUtils.printYellowText("Input array Q = ");
+            for(int entry : Q){ System.out.print(entry + ", "); }
+        } else {
+            MyIOUtils.printYellowText("Processing large input array");
+        }
+        int[] retVal = function.accept(N, P, Q);
+        if(retVal.length < 40){
+            System.out.print("\n" + functionName + " returns ");
+            for(int entry : retVal){ System.out.print(entry + ", "); }
+            System.out.println();
+        } else {
+            System.out.println("\n" + functionName + " returns a large array");
+        }
+    }
+
     public void printStringRetInt(String functionName, String inputString, MyFuncInterfaces.StringRetInt function){
         if(inputString.length()< 40){
             MyIOUtils.printYellowText("Input string = " + inputString);

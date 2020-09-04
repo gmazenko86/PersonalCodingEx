@@ -12,7 +12,7 @@ public class L10PrimeComp {
     public void runLesson10(){
         MyIOUtils.printlnBlueText("Running Demo " + this.toString());
         MyPrintFuncs prn = new MyPrintFuncs();
-/*
+
         // ********** L10-1: Count Factors
 
         int L10_1d =  479_001_600; // = 12!
@@ -56,8 +56,6 @@ public class L10PrimeComp {
 
         int L10_3a = 30;
         prn.printIntRetInt("minPerimeterRectangle1", L10_3a, this::minPerimeterRectangle1);
-
- */
 
         // ********** L10-4: Peaks
         int[] L10_4a = {1,2,3,4,3,4,1,2,3,4,6,2};

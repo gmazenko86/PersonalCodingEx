@@ -21,8 +21,18 @@ public class MyFuncInterfaces {
     }
 
     @FunctionalInterface
+    public interface IntArrRetIntArr {
+        int[] accept(int[]A);
+    }
+
+    @FunctionalInterface
     public interface StringIntArr2RetIntArr{
         int[] accept(String S, int[] P, int[] Q);
+    }
+
+    @FunctionalInterface
+    public interface IntIntArr2RetIntArr{
+        int[] accept(int N, int[] P, int[] Q);
     }
 
     @FunctionalInterface

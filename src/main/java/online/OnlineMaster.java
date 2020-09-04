@@ -47,11 +47,16 @@ public class OnlineMaster {
         L9MaxSlice l9 = new L9MaxSlice();
         l9.runLesson9();
 
- */
-
         // Lesson 10 : Prime and Composite
         L10PrimeComp l10 = new L10PrimeComp();
         l10.runLesson10();
+
+ */
+
+        // Lesson 11 : Sieve of Eratosthenes
+        L11SeiveEratoshthenes l11 = new L11SeiveEratoshthenes();
+        l11.runLesson11();
+
     }
 
 }
