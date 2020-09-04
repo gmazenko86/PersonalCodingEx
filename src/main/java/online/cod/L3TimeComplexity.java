@@ -1,11 +1,45 @@
 package online.cod;
 
+import myioutils.MyIOUtils;
+
 import java.util.Arrays;
 
 public class L3TimeComplexity {
 
+    public void runLesson3(){
+        MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+        MyPrintFuncs prn = new MyPrintFuncs();
+
+        // Lesson 3-1 : Frog Jump
+        int X = 10; int Y = 85; int D = 30;
+        prn.printIntIntIntRetInt("frogJump1", X, Y, D, this::frogJump1);
+        X = 1; Y = 1_000_000_000; D = 1;
+        prn.printIntIntIntRetInt("frogJump1", X, Y, D, this::frogJump1);
+        X = 1; Y = 2; D = 3;
+        prn.printIntIntIntRetInt("frogJump1", X, Y, D, this::frogJump1);
+
+        // Lesson 3-2 : Permutation missing element
+        int[] L3_1 = {2, 3, 1, 5};
+        prn.printIntArrRetInt("missingElement1", L3_1, this::missingElement1);
+        int[] L3_2 = {};
+        prn.printIntArrRetInt("missingElement1", L3_2, this::missingElement1);
+        int[] L3_3 = {1};
+        prn.printIntArrRetInt("missingElement1", L3_3, this::missingElement1);
+        int[] L3_4 = {2};
+        prn.printIntArrRetInt("missingElement1", L3_4, this::missingElement1);
+        int[] L3_5 = {1, 3};
+        prn.printIntArrRetInt("missingElement1", L3_5, this::missingElement1);
+        int[] L3_6 = {1, 3, 5, 7, 9, 2, 4, 6, 10};
+        prn.printIntArrRetInt("missingElement1", L3_6, this::missingElement1);
+
+        // Lesson 3-3 : Tape equilibrium
+        int[] L3_7 = {3, 1, 2, 4, 3};
+        prn.printIntArrRetInt("tapeEquilibrium1", L3_6, this::tapeEquilibrium1);
+        prn.printIntArrRetInt("tapeEquilibrium2", L3_6, this::tapeEquilibrium2);
+    }
+
     // Lesson 3-1 : Frog jump
-    public int frogJumpSolution(int X, int Y, int D){
+    public int frogJump1(int X, int Y, int D){
         int distToJump = Y - X;
         int fullJumps = distToJump/D;
         if(distToJump % D > 0){
@@ -15,7 +49,7 @@ public class L3TimeComplexity {
     }
 
     // Lesson 3-2 : Permutation missing element
-    public int missingArrayElementSolution(int[] A){
+    public int missingElement1(int[] A){
         Arrays.sort(A);
 
         if(A.length == 0){return 1;}
@@ -39,7 +73,7 @@ public class L3TimeComplexity {
     // random medium, numbers from -1,000 to 50, length = ~10,000:
     // TIMEOUT ERROR, running time: 0.116 sec., time limit: 0.112 sec.
 
-    public int tapeEquilibriumSolution1(int[] A){
+    public int tapeEquilibrium1(int[] A){
         int sumHigh = Arrays.stream(A).sum();
         int sumLow = 0;
         int difference;
@@ -59,7 +93,7 @@ public class L3TimeComplexity {
     // my own benchmarking shows that it has ~6x throughput
     // apparently using stream functionality for small arrays
     // is not as efficient as just iterating through the array
-    public int tapeEquilibriumSolution2(int[] A){
+    public int tapeEquilibrium2(int[] A){
         int sumHigh = 0;
         for(int element : A){sumHigh += element;}
         int sumLow = 0;
@@ -76,23 +110,4 @@ public class L3TimeComplexity {
         return mindiff;
     }
 
-
-// **********************************
-    public void printMinFrogJumps(int x, int y, int d){
-        int minJumps = frogJumpSolution(x, y, d);
-        System.out.println("Min frog jumps from X= " + x +": Y = " +
-                y + ": D = " + d + " is " + minJumps);
-
-    }
-    public void printMissingElement(int[] A){
-        for(int entry : A){System.out.print(entry + ", ");}
-        int missing = missingArrayElementSolution(A);
-        System.out.println("\nMissing element = " + missing);
-    }
-
-    public void printTapeEquilibrium(int[] A){
-        for(int entry : A){System.out.print(entry + ", ");}
-        int minDiff = tapeEquilibriumSolution1(A);
-        System.out.println("\nMinimum difference = " + minDiff);
-    }
 }

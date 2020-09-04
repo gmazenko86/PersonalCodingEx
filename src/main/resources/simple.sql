@@ -350,3 +350,22 @@ select *
 from us_customers limit 5;
 
 select public.addints(8, 9);
+/*
+--MySQL create table
+create table tutorials_tbl(
+   tutorial_id INT NOT NULL AUTO_INCREMENT,
+   tutorial_title VARCHAR(100) NOT NULL,
+   tutorial_author VARCHAR(40) NOT NULL,
+   submission_date DATE,
+   PRIMARY KEY ( tutorial_id )
+);
+
+create table gregs(
+  idnum int not null auto_increment,
+  fname varchar(20),
+  lname varchar(20),
+  primary key(idnum)
+);
+*/
+
+

@@ -1,13 +1,47 @@
 package online.cod;
 
+import myioutils.MyIOUtils;
+
 import java.util.Arrays;
 
 public class L4CountingElements {
 
+    public void runLesson4(){
+        // Lesson 4-1 : FrogRiverOne
+        MyIOUtils.printlnBlueText("Running Demo " + this.toString());
+        MyPrintFuncs prn = new MyPrintFuncs();
+        int jumps = 5; int[] leaves = {1,3,1,4,2,3,5,4};
+        prn.printIntIntArrRetInt("frogRiver1", jumps, leaves, this::frogRiver1);
+        prn.printIntIntArrRetInt("frogRiver2", jumps, leaves, this::frogRiver2);
+
+        // Lesson 4-2 : MaxCounters
+        int numCounters = 5; int[] L4_1 = {3,4,4,6,1,4,4};
+//        int numCounters = 5; int[] L4_1 = {3,4,4,6,1,4,4,6,1,2,6,1,2,3,6,2,2,2,2,2,6};
+        prn.printIntIntArrRetIntArr("maxCounters1", numCounters, L4_1, this::maxCounters1);
+        prn.printIntIntArrRetIntArr("maxCounters2", numCounters, L4_1, this::maxCounters2);
+        prn.printIntIntArrRetIntArr("maxCounters3", numCounters, L4_1, this::maxCounters3);
+        prn.printIntIntArrRetIntArr("maxCounters4", numCounters, L4_1, this::maxCounters4);
+        prn.printIntIntArrRetIntArr("maxCounters5", numCounters, L4_1, this::maxCounters5);
+
+        // Lesson 4-3 : MissingInteger
+        int[] L4_3 = {1,3,6,4,1,2};
+        System.out.println();
+        prn.printIntArrRetInt("missingInteger1", L4_3, this::missingInteger1);
+        prn.printIntArrRetInt("missingInteger2", L4_3, this::missingInteger2);
+
+        // Lesson 4-4 : CheckPermutation
+        int[] L4_4 = {4,1,3,2};
+        System.out.println();
+        prn.printIntArrRetInt("checkPerm1", L4_4, this::checkPerm1);
+        int[] L4_4b = {4,1,3};
+        prn.printIntArrRetInt("checkPerm1", L4_4b, this::checkPerm1);
+
+    }
+
     // Lesson 4-1 : FrogRiverOne
     // the following 2 function solution got a 54/100
     // all functional tests passed. All performance tests failed
-    public int frogRiverSolution1(int X, int[] A){
+    public int frogRiver1(int X, int[] A){
         if(X > A.length){ return -1; }
         boolean[] dummyArray = {true};
         boolean[] flagArray = Arrays.copyOf(dummyArray, X+1);
@@ -30,7 +64,7 @@ public class L4CountingElements {
     // this solution gets a score of 100/100
     // my own benchmarking indicates that this is ~2x more
     // efficient than solution1
-    public int frogRiverSolution2(int X, int[] A){
+    public int frogRiver2(int X, int[] A){
         if(X > A.length){ return -1; }
         boolean[] dummyArray = {true};
         boolean[] flagArray = Arrays.copyOf(dummyArray, X+1);
@@ -49,7 +83,7 @@ public class L4CountingElements {
     // Lesson 4-2 : MaxCounters
     // the 2 function solution below received 66/100.
     // All functional tests passed. 3 of 5 performance tests failed.
-    public int[] maxCountersSolution1(int numCnt, int[] A){
+    public int[] maxCounters1(int numCnt, int[] A){
 
         int[] dummy = {0};
         int[] counters = Arrays.copyOf(dummy, numCnt);
@@ -88,7 +122,7 @@ public class L4CountingElements {
     // functional tests passed. 2 of 5 performance tests failed.
     // my own benchmark is not better than solution 1 for a very small data set
     // but one of the previously failing large data set cases now passes
-    public int[] maxCountersSolution2(int numCnt, int[] A){
+    public int[] maxCounters2(int numCnt, int[] A){
 
         int[] dummy = {0};
         int[] counters = Arrays.copyOf(dummy, numCnt);
@@ -113,7 +147,7 @@ public class L4CountingElements {
     // solution 3 does not loop through to set the max if it does not have to
     // remaining failing test case is "10000 max_counter operations"
     // need to make setting the max more efficient
-    public int[] maxCountersSolution3(int numCnt, int[] A){
+    public int[] maxCounters3(int numCnt, int[] A){
         int[] dummy = {0};
         int[] counters = Arrays.copyOf(dummy, numCnt);
         int max = 0;
@@ -136,7 +170,7 @@ public class L4CountingElements {
         return counters;
     }
 
-    public int[] maxCountersSolution4(int numCnt, int[] A){
+    public int[] maxCounters4(int numCnt, int[] A){
         int[] dummy = {0};
         int[] counters = Arrays.copyOf(dummy, numCnt);
         int max = 0;
@@ -163,7 +197,7 @@ public class L4CountingElements {
     // my own benchmarks show that it performs slightly worse
     // for a very small input array. It apparently performs
     // much better for "10000 max_counter operations"
-    public int[] maxCountersSolution5(int numCnt, int[] A) {
+    public int[] maxCounters5(int numCnt, int[] A) {
         int[] dummy = {0};
         int[] counters = Arrays.copyOf(dummy, numCnt);
         int max = 0;
@@ -193,7 +227,7 @@ public class L4CountingElements {
     // TIMEOUT ERROR, running time: 2.888 sec., time limit: 0.912 sec.
     // failed case 2: shuffled sequence 1, 2, ..., 100000 (without minus)
     //  TIMEOUT ERROR, running time: 5.008 sec., time limit: 1.008 sec.
-    public int missingIntegerSolution1(int[] A){
+    public int missingInteger1(int[] A){
         Arrays.sort(A);
         int baseIndex = 0;
         int searchInt = 1;
@@ -212,7 +246,7 @@ public class L4CountingElements {
     // the solution below scored 100/100. Reducing the
     // array size in solution 1 was actually a detriment
     // and caused 2 performance tests to fail. Avoid mem copies
-    public int missingIntegerSolution2(int[] A){
+    public int missingInteger2(int[] A){
         Arrays.sort(A);
         int baseIndex;
         int searchInt = 1;
@@ -228,7 +262,7 @@ public class L4CountingElements {
     // Lesson 4-4 : CheckPermutation
 
     // the solution below received 100/100
-    public int checkPermSolution1(int[] A){
+    public int checkPerm1(int[] A){
         Arrays.sort(A);
         if(A[A.length -1] != A.length){ return 0; }
         for(int i = 0; i < A.length - 1; i++){
@@ -237,63 +271,5 @@ public class L4CountingElements {
         return 1;
     }
 
-// **********************************************************************
 
-    public void printFrogRiverSolution1(int X, int[] A){
-        System.out.println("X = Jumps to get across river = " + X);
-        for(int entry : A){System.out.print(entry + ", ");}
-        int jumpTime = frogRiverSolution1(X, A);
-        System.out.println("\nSolution 1: Can cross at time = " + jumpTime);
-    }
-    public void printFrogRiverSolution2(int X, int[] A){
-        System.out.println("X = Jumps to get across river = " + X);
-        for(int entry : A){System.out.print(entry + ", ");}
-        int jumpTime = frogRiverSolution2(X, A);
-        System.out.println("\nSolution 2: Can cross at time = " + jumpTime);
-    }
-
-    // Don't want 5 different print functions for 5 solutions
-    // Define a custom functional interface since none of the standard
-    // ones have the desired method signature
-    // A functional Interface is just a regular Interface but with one rule
-    // – it must have exactly one abstract method. They
-    // are assignment targets for Lambda Expressions and Method references.
-    @FunctionalInterface
-    public interface MaxCountSolution{
-        int[] accept(int N, int[]A);
-    }
-
-    // now the below function can take a solution function as a parameter
-    public void printMaxCountersSolution(int id, int numCnt, int[] A,
-                                         MaxCountSolution function){
-        System.out.print("Input array = ");
-        for(int entry : A){ System.out.print(entry + ", "); }
-        int[] counters = function.accept(numCnt, A);
-        System.out.print("\nmaxCountersSolution" + id + " returns ");
-        for(int entry : counters){System.out.print(entry + ", ");}
-        System.out.println();
-    }
-
-    @FunctionalInterface
-    public interface IntArrayRetInt {
-        int accept(int[]A);
-    }
-
-    public void printMissingIntegerSolution(int id, int[] A,
-                                         IntArrayRetInt function){
-        System.out.print("Input array = ");
-        for(int entry : A){ System.out.print(entry + ", "); }
-        int retVal = function.accept(A);
-        System.out.print("\nmissingIntegerSolution" + id + " returns " + retVal);
-        System.out.println();
-    }
-
-    public void printCheckPermSolution(int id, int[] A,
-                                            IntArrayRetInt function){
-        System.out.print("Input array = ");
-        for(int entry : A){ System.out.print(entry + ", "); }
-        int retVal = function.accept(A);
-        System.out.print("\ncheckPermSolution" + id + " returns " + retVal);
-        System.out.println();
-    }
 }
