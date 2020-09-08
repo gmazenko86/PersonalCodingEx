@@ -3,6 +3,7 @@ package online.cod;
 import myioutils.MyIOUtils;
 
 import java.sql.SQLSyntaxErrorException;
+import java.util.function.IntBinaryOperator;
 import java.util.function.IntFunction;
 import java.util.function.ToIntFunction;
 
@@ -136,6 +137,14 @@ public class MyPrintFuncs {
     public void printIntRetInt(String functionName, int N, ToIntFunction<Integer> function){
         MyIOUtils.printYellowText("Input value N = " + N);
         int retVal = function.applyAsInt(N);
+        System.out.println("\n" + functionName + " returns " + retVal);
+    }
+
+    public void printIntBinaryOperator(String functionName, int N, int M,
+                                       IntBinaryOperator function){
+        MyIOUtils.printlnYellowText("Input value N = " + N);
+        MyIOUtils.printYellowText("Input value M = " + M);
+        int retVal = function.applyAsInt(N, M);
         System.out.println("\n" + functionName + " returns " + retVal);
     }
 }

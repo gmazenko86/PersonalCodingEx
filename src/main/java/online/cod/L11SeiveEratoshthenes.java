@@ -4,13 +4,14 @@ import myioutils.MyIOUtils;
 
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class L11SeiveEratoshthenes {
 
     public void runLesson11() {
         MyIOUtils.printlnBlueText("Running Demo " + this.toString());
         MyPrintFuncs prn = new MyPrintFuncs();
-/*
+
         // ********** L11-1: Count Non Divisible
         int[] L11_1a = {3,1,2,3,6};
         prn.printIntArrRetIntArr("countNonDiv1", L11_1a, this::countNonDiv1);
@@ -38,7 +39,6 @@ public class L11SeiveEratoshthenes {
         prn.printIntArrRetIntArr("countNonDiv2", L11_1e, this::countNonDiv2);
         prn.printIntArrRetIntArr("countNonDiv3", L11_1e, this::countNonDiv3);
 
- */
         // ********** L11-2: Count Semi Primes
 
         int L11_2a = 26;
