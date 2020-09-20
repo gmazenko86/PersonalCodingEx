@@ -3,6 +3,7 @@ package online.cod;
 import myioutils.MyIOUtils;
 
 import java.sql.SQLSyntaxErrorException;
+import java.util.function.IntBinaryOperator;
 import java.util.function.IntFunction;
 import java.util.function.ToIntFunction;
 
@@ -137,5 +138,27 @@ public class MyPrintFuncs {
         MyIOUtils.printYellowText("Input value N = " + N);
         int retVal = function.applyAsInt(N);
         System.out.println("\n" + functionName + " returns " + retVal);
+    }
+
+    public void printIntBinaryOperator(String functionName, int N, int M,
+                                       IntBinaryOperator function){
+        MyIOUtils.printlnYellowText("Input value N = " + N);
+        MyIOUtils.printYellowText("Input value M = " + M);
+        int retVal = function.applyAsInt(N, M);
+        System.out.println("\n" + functionName + " returns " + retVal);
+    }
+
+    public void printIntArr2RetIntArr(String funcName, int[] A, int[] B,
+                                            MyFuncInterfaces.IntArr2RetIntArr function){
+        int[] retArray = function.accept(A, B);
+        MyIOUtils.printYellowText("Array A = ");
+        for(int entry : A){ System.out.print(entry + ", ");}
+        System.out.println();
+        MyIOUtils.printYellowText("Array B = ");
+        for(int entry : B){ System.out.print(entry + ", ");}
+        System.out.println();
+        System.out.print(funcName + " returns ");
+        for(int entry : retArray){ System.out.print(entry + ", ");}
+        System.out.println();
     }
 }

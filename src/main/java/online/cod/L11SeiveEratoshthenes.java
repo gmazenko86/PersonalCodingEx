@@ -4,13 +4,14 @@ import myioutils.MyIOUtils;
 
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class L11SeiveEratoshthenes {
 
     public void runLesson11() {
         MyIOUtils.printlnBlueText("Running Demo " + this.toString());
         MyPrintFuncs prn = new MyPrintFuncs();
-/*
+
         // ********** L11-1: Count Non Divisible
         int[] L11_1a = {3,1,2,3,6};
         prn.printIntArrRetIntArr("countNonDiv1", L11_1a, this::countNonDiv1);
@@ -38,7 +39,6 @@ public class L11SeiveEratoshthenes {
         prn.printIntArrRetIntArr("countNonDiv2", L11_1e, this::countNonDiv2);
         prn.printIntArrRetIntArr("countNonDiv3", L11_1e, this::countNonDiv3);
 
- */
         // ********** L11-2: Count Semi Primes
 
         int L11_2a = 26;
@@ -54,8 +54,12 @@ public class L11SeiveEratoshthenes {
                 this::countSemiprimes3);
 
         int L11_2b = 50_000;
-        int[] L11_2Pb = {794,1715,4408,4534,7363,7393,7708,8263,13985,14143,15126,19448,19917,21027,22505,24817,30623,30789,31466,32744,32922,34643,35937,40440,43233,45765,47110,47201,49142,49406};
-        int[] L11_2Qb = {18249,23017,49462,23271,24148,9737,13053,38319,36747,36881,40000,47294,40087,28661,48049,35934,37857,38363,49838,47992,34560,43150,44473,49209,46352,47375,48041,47312,49930,49775};
+        int[] L11_2Pb = {794,1715,4408,4534,7363,7393,7708,8263,13985,14143,15126,19448,19917,
+                21027,22505,24817,30623,30789,31466,32744,32922,34643,35937,40440,43233,45765,
+                47110,47201,49142,49406};
+        int[] L11_2Qb = {18249,23017,49462,23271,24148,9737,13053,38319,36747,36881,40000,
+                47294,40087,28661,48049,35934,37857,38363,49838,47992,34560,43150,44473,49209,
+                46352,47375,48041,47312,49930,49775};
         prn.printIntIntArr2RetIntArr("countSemiprimes1", L11_2b, L11_2Pb, L11_2Qb,
                 this::countSemiprimes1);
         prn.printIntIntArr2RetIntArr("countSemiprimes2", L11_2b, L11_2Pb, L11_2Qb,
