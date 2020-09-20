@@ -50,4 +50,9 @@ public class MyFuncInterfaces {
         int accept(String string);
     }
 
+    @FunctionalInterface
+    public interface IntArr2RetIntArr{
+        int[] accept(int[] A, int[] B);
+    }
+
 }
