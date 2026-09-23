@@ -1,7 +1,7 @@
 package microservices;
 
-import io.vertx.rxjava.core.RxHelper;
-import io.vertx.rxjava.core.Vertx;
+import io.vertx.reactivex.core.RxHelper;
+import io.vertx.reactivex.core.Vertx;
 import myioutils.MyIOUtils;
 
 import java.io.BufferedReader;

@@ -1,7 +1,7 @@
 package microservices;
 
 import io.vertx.core.Future;
-import io.vertx.rxjava.core.AbstractVerticle;
+import io.vertx.reactivex.core.AbstractVerticle;
 
 public class MsgRcvVerticle extends AbstractVerticle {
     private String id, address;

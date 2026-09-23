@@ -2,9 +2,9 @@ package microservices;
 
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
-import io.vertx.rxjava.core.AbstractVerticle;
-import io.vertx.rxjava.ext.web.Router;
-import io.vertx.rxjava.ext.web.RoutingContext;
+import io.vertx.reactivex.core.AbstractVerticle;
+import io.vertx.reactivex.ext.web.Router;
+import io.vertx.reactivex.ext.web.RoutingContext;
 
 public class HttpServerVerticle extends AbstractVerticle {
     private int port;
@@ -29,7 +29,7 @@ public class HttpServerVerticle extends AbstractVerticle {
         String address = context.pathParam("address");
         String lastName = context.pathParam("lastName");
         System.out.println("\n" + name + ": " + firstName + " called from " + address);
-        vertx.eventBus().rxSend(address, firstName + " called with last name " + lastName).toObservable()
+        vertx.eventBus().rxRequest(address, firstName + " called with last name " + lastName).toObservable()
                 .subscribe(reply -> {
                     System.out.println(name + ": got message\n    " + reply.body());
                     context.response().setStatusCode(200).end(reply.body().toString() + "\n");
@@ -44,7 +44,7 @@ public class HttpServerVerticle extends AbstractVerticle {
             String firstName = payload.getString("firstName");
             String address = payload.getString("address");
             String lastName = payload.getString("lastName");
-            vertx.eventBus().rxSend(address, firstName + " called with last name " + lastName).toObservable()
+            vertx.eventBus().rxRequest(address, firstName + " called with last name " + lastName).toObservable()
                     .subscribe(reply -> {
                         System.out.println(name + ": got message\n    " + reply.body());
                         context.response().setStatusCode(200).end(reply.body().toString() + "\n");
